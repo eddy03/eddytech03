@@ -51,6 +51,8 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
         'as' => 'admin.logout',
         'uses' => 'AdminController@logout'
     ));
+    
+    Route::resource('article', 'ArticleController');
 });
 
 ////////////////////////////////////////
