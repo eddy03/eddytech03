@@ -9,14 +9,17 @@ Web developer
 
 @section('content')
 <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+    <div class="col-xs-6 col-xs-offset-3">
         <div class="page-header remove-top-margin">
             <h3 class="remove-top-margin">Administration eddytech03</h3>
         </div>
+        @if(Session::has('flash_errors'))
+        <div class="alert alert-danger"><i class="fa fa-warning fa-fw"></i> {{ Session::get('flash_errors') }}</div>
+        @endif
         {{ Form::open(array('route' => 'admin.auth')) }}
             <div class="input-group input-group-sm">
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input type="text" class="form-control" name="username" required placeholder="Username">
+                <input type="email" class="form-control" name="email" required placeholder="Email address">
             </div>
             <div class="between-two-form"></div>
             <div class="input-group input-group-sm">

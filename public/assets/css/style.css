@@ -1,7 +1,7 @@
 body {
     padding-top: 70px;
 }
-.row, .remove-margin {
+.remove-margin {
     margin: 0px;
 }
 .navbar-fix-float {

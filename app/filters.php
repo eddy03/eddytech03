@@ -33,9 +33,14 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) return Redirect::guest('login');
+Route::filter('auth', function() {
+    if (Auth::guest())
+        return Redirect::route('home');
+});
+
+Route::filter('check', function() {
+    if (!Auth::guest())
+        return Redirect::route('admin.dashboard');
 });
 
 

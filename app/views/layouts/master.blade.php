@@ -15,7 +15,9 @@
     <body>
         @include('menu.master')
         
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>        
         
         {{ HTML::script('components/jquery/jquery.min.js') }}
         {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
