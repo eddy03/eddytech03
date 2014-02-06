@@ -1,0 +1,15 @@
+body {
+    padding-top: 70px;
+}
+.row, .remove-margin {
+    margin: 0px;
+}
+.navbar-fix-float {
+    margin-right: 5px !important;
+}
+.between-two-form {
+    padding-top: 5px;
+}
+.remove-top-margin {
+    margin-top: 0px !important;
+}

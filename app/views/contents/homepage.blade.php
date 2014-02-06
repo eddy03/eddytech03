@@ -1,0 +1,38 @@
+@extends('layouts.master')
+
+@section('title')
+Web developer
+@endsection
+
+@section('style')
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col-sm-9">
+        Landing page
+    </div>
+    <div class="visible-xs">
+        <hr />
+    </div>
+    <div class="col-sm-3">
+        <form role="form">
+            <div class="input-group">
+                <input type="text" name="search" id="search" class="form-control input-sm" placeholder="Carian artikel..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search fa-fw"></i></button>
+                </span>
+            </div>            
+        </form>
+        <hr />
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function() {
+    $('#menu-home').addClass('active');
+});
+</script>
+@endsection
