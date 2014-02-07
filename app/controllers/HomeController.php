@@ -2,9 +2,18 @@
 
 class HomeController extends BaseController {
 
+    private $article;
+    
+    public function __construct(Article $article)
+    {
+        $this->article = $article;
+    }
+    
     public function showHomePage()
     {
-        return View::make('contents.homepage');
+        $articles = $this->article->where('status', 1)->get();
+        return View::make('contents.homepage')
+                ->with('articles', $articles);
     }
     
     public function showAboutMe()

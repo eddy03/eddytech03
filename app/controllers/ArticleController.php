@@ -4,45 +4,34 @@ class ArticleController extends \BaseController {
     
     private $article;
     
-    public function __construct(Article $article) {
+    public function __construct(Article $article)
+    {
         $this->article = $article;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        $articles = $this->article->where('status', 1)->get();
+        $articles = $this->article->where('status', '!=', 0)->get();
         return View::make('admins.articles.index')
                 ->with('articles', $articles);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
         return View::make('admins.articles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
         $subject = Input::get('subject');
-        $filename = camel_case($subject) . '.md';        
+        $filename = camel_case($subject) . '.md';
+        
         $this->article->subject = $subject;
-        $this->article->status = 1;
+        $this->article->status = (Input::get('status') == 'true')? 1 : 2;
+        $this->article->snippet = Input::get('snippet');
         $this->article->filename = $filename;
-        $this->article->save();        
+        $this->article->save();
+        
         File::put('markdown/' . $filename, Input::get('markdown'));
         
         //Set the session flash to note the user process is completed
@@ -51,12 +40,6 @@ class ArticleController extends \BaseController {
         return URL::route('admin.article.edit', array(camel_case($subject)));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
             //Refer Route name admin.detailartikel
@@ -70,6 +53,8 @@ class ArticleController extends \BaseController {
      */
     public function edit($param)
     {
+        $articles = $this->article->where('filename', $param . '.md')->first(array('status', 'snippet'));
+        
         $content = MarkdownController::bukaArtikel($param, false);
         if($content === false)
             return App::abort(404);
@@ -78,6 +63,7 @@ class ArticleController extends \BaseController {
         
         return View::make('admins.articles.edit')
                 ->with('path', $param)
+                ->with('articles', $articles)
                 ->with('markdown', $content)
                 ->with('subject', $subject);
     }
@@ -96,7 +82,8 @@ class ArticleController extends \BaseController {
         
         $articles->subject = $subject;
         $articles->filename = $filename;
-        $articles->status = 1;
+        $articles->status = (Input::get('status') == 'true')? 1 : 2;
+        $articles->snippet = Input::get('snippet');
         $articles->save();
         
         $filepath = 'markdown/' . $filename;

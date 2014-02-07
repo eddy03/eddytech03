@@ -10,7 +10,13 @@ Web developer
 @section('content')
 <div class="row">
     <div class="col-sm-9">
-        Landing page
+        @if(count($articles) > 0)
+        
+        @else
+        <div class="alert alert-info">
+            <i class="fa fa-meh-o fa-fw"></i> Tiada artikel untuk dipaparkan..... 
+        </div>
+        @endif
     </div>
     <div class="visible-xs">
         <hr />
