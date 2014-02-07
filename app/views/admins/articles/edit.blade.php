@@ -20,17 +20,22 @@ Web developer
         <div class="page-header remove-top-margin">
             <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Ubah artikel</h3>
         </div>
-        <div id="alertbox"></div>        
-        <div id="editor">{{ $markdown }}</div>
+        @if(Session::has('done'))
+        <div class="alert alert-success">
+            <i class="fa fa-info fa-fw"></i> {{ Session::get('flash_done') }}
+        </div>
+        @endif
+        <div id="editor">{{{ $markdown }}}</div>
         <div id="editor2"></div>
         <hr />
     </div>    
     <div class="col-sm-2">
         <button class="btn btn-info btn-sm btn-block" id="preview"><i class="fa fa-file-o fa-fw"></i> Pratonton</button>
         <button class="btn btn-primary btn-sm btn-block" id="save"><i class="fa fa-save fa-fw"></i> Simpan</button>
-        <button class="btn btn-danger btn-sm btn-block"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
+        <button class="btn btn-danger btn-sm btn-block" id="delete"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
         <hr />
-        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Topic URI register" required />
+        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Topic URI register" value="{{ $subject }}" required />
+        <input type="hidden" name="article-id" value="{{ $path . '.md' }}" />
     </div>
 </div>
 @endsection
@@ -38,6 +43,7 @@ Web developer
 @section('script')
 {{ HTML::script('assets/js/ace-builds-master/src-min-noconflict/ace.js') }}
 {{ HTML::script('assets/js/google-code-prettify/prettify.js') }}
+{{ HTML::script('components/bootbox/bootbox.js') }}
 <script>    
     var editor;
     $(document).ready(function() {
@@ -78,19 +84,38 @@ Web developer
             $('input[name=uri]').focus();
             return false;
         }
-        var urls = "{{ route('admin.article.update') }}";
+        var urls = "{{ route('admin.article.update', array(Request::segment(3))) }}";
         $.ajax({
             url: urls,
             type: 'PUT',
             data: {
                 markdown: editor.getSession().getValue(),
-                subject: $('input[name=uri]').val()
+                subject: $('input[name=uri]').val(),
+                filename: $('input[name=article-id]').val()
             },
             success: function(msg) {
-                $('#alertbox').html('<div class="alert alert-success"><i class="fa fa-info fa-fw"></i> Artikel telah disimpan</div>');
-                setTimeout(function(){$('#alertbox').empty()},4000);
+                //console.log(msg);
+                window.location.href = msg;
             }
         });
+    });
+    $('#delete').click(function() {
+        bootbox.confirm("Artikel ini akan dipadam, Ianya tidak boleh diundur semula!", function(result) {
+            if(result) {
+                var urls = "{{ route('admin.article.destroy', array(Request::segment(3))) }}";
+                $.ajax({
+                    url: urls,
+                    type: 'DELETE',
+                    data: {
+                        filename: $('input[name=article-id]').val()
+                    },
+                    success: function(msg) {
+                        //console.log(msg);
+                        window.location.href = msg;
+                    }
+                });
+            }
+        }); 
     });
 </script>
 @endsection

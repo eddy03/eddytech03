@@ -38,12 +38,17 @@ class ArticleController extends \BaseController {
     public function store()
     {
         $subject = Input::get('subject');
+        $filename = camel_case($subject) . '.md';        
         $this->article->subject = $subject;
         $this->article->status = 1;
-        $this->article->save();
-        $filename = camel_case($subject) . '.md';        
+        $this->article->filename = $filename;
+        $this->article->save();        
         File::put('markdown/' . $filename, Input::get('markdown'));
-        //return MarkdownExtra::defaultTransform(Input::get('markdown'));
+        
+        //Set the session flash to note the user process is completed
+        Session::flash('done', 'Artikel telah berjaya disimpan');
+        
+        return URL::route('admin.article.edit', array(camel_case($subject)));
     }
 
     /**
@@ -83,9 +88,26 @@ class ArticleController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($subject)
     {
-            //
+        $subject = Input::get('subject');
+        $filename = camel_case($subject) . '.md';
+        $articles = $this->article->where('filename', Input::get('filename'))->first();
+        
+        $articles->subject = $subject;
+        $articles->filename = $filename;
+        $articles->status = 1;
+        $articles->save();
+        
+        $filepath = 'markdown/' . $filename;
+        $oldpath = 'markdown/' . Input::get('filename');
+        File::delete($oldpath);
+        File::put($filepath, Input::get('markdown'));
+        
+        //Set the session flash to note the user process is completed
+        Session::flash('done', 'Artikel telah berjaya disimpan');
+        
+        return URL::route('admin.article.edit', array(camel_case($subject)));
     }
 
     /**
@@ -96,7 +118,11 @@ class ArticleController extends \BaseController {
      */
     public function destroy($id)
     {
-            //
+        $articles = $this->article->where('filename', Input::get('filename'))->first();
+        $articles->status = 0;
+        $articles->save();
+        
+        return URL::route('admin.article.index');
     }
 
 }

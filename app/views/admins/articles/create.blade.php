@@ -87,8 +87,7 @@ Web developer
                 subject: $('input[name=uri]').val()
             },
             success: function(msg) {
-                $('#alertbox').html('<div class="alert alert-success"><i class="fa fa-info fa-fw"></i> Artikel telah disimpan</div>');
-                setTimeout(function(){$('#alertbox').empty()},4000);
+                window.location.href = msg;
             }
         });
     });

@@ -15,9 +15,8 @@ Web developer
     </div>
     <div class="col-lg-2">
         <a href="{{ URL::route('admin.article.edit', array($path)) }}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-pencil fa-fw"></i> Ubah</a>
-        <button class="btn btn-danger btn-sm btn-block"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
         <hr />
-        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Topic URI register" value="{{ $subject or '' }}" required />
+        {{ $subject or '' }}
     </div>
 </div>
 @endsection

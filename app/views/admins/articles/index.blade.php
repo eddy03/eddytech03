@@ -33,7 +33,7 @@ Web developer
     <div class="col-xs-12">
         @if(count($articles) == 0)
         <div class="alert alert-info">
-            <h3><i class="fa fa-info fa-fw"></i> Artikel masih tiada didalam website</h3>
+            <i class="fa fa-info fa-fw"></i> Artikel masih tiada didalam website
         </div>
         @else
         <table class="table">

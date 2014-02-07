@@ -9,16 +9,16 @@ class MarkdownController extends \BaseController {
         return MarkdownExtra::defaultTransform(Input::get('markdown'));
     }
     
-    public function bacaArtikel($param)
-    {
-        $content = $this->bukaArtikel($param);
+    public function bacaArtikel($articleName)
+    {        
+        $content = $this->bukaArtikel($articleName);
         if($content === false)
             return App::abort(404);
         
-        $subject = ucfirst(str_replace('_', ' ', snake_case($param)));
+        $subject = ucfirst(str_replace('_', ' ', snake_case($articleName)));
         
         return View::make('admins.articles.show')
-                ->with('path', $param)
+                ->with('path', $articleName)
                 ->with('markdown', $content)
                 ->with('subject', $subject);
     }
