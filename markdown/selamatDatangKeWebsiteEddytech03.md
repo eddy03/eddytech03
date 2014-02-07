@@ -1,4 +1,4 @@
-Eddytech03.com website berwajah baharu
+<i class="fa fa-info fa-fw"></i> Eddytech03.com website berwajah baharu
 ======================================
 
 <br />
