@@ -8,16 +8,14 @@
         {{ HTML::style('components/bootswatch/united/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('assets/css/style.css') }}
-        
+        {{ HTML::style('assets/css/admin.css') }}        
         @yield('style')
     </head>
     
     <body>
-        @include('menu.master')
+        @include('menu.admin')
         
-        <div class="container">
-            @yield('content')
-        </div>        
+        @yield('content')
         
         {{ HTML::script('components/jquery/jquery.min.js') }}
         {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}

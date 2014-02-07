@@ -1,6 +1,12 @@
 <?php
 
 class ArticleController extends \BaseController {
+    
+    private $article;
+    
+    public function __construct(Article $article) {
+        $this->article = $article;
+    }
 
     /**
      * Display a listing of the resource.
@@ -9,7 +15,9 @@ class ArticleController extends \BaseController {
      */
     public function index()
     {
-        return View::make('admins.articles.index');
+        $articles = $this->article->where('status', 1)->get();
+        return View::make('admins.articles.index')
+                ->with('articles', $articles);
     }
 
     /**
@@ -29,7 +37,13 @@ class ArticleController extends \BaseController {
      */
     public function store()
     {
-            //
+        $subject = Input::get('subject');
+        $this->article->subject = $subject;
+        $this->article->status = 1;
+        $this->article->save();
+        $filename = camel_case($subject) . '.md';        
+        File::put('markdown/' . $filename, Input::get('markdown'));
+        //return MarkdownExtra::defaultTransform(Input::get('markdown'));
     }
 
     /**
@@ -40,7 +54,7 @@ class ArticleController extends \BaseController {
      */
     public function show($id)
     {
-            //
+            //Refer Route name admin.detailartikel
     }
 
     /**
@@ -49,9 +63,18 @@ class ArticleController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($param)
     {
-            //
+        $content = MarkdownController::bukaArtikel($param, false);
+        if($content === false)
+            return App::abort(404);
+        
+        $subject = ucfirst(str_replace('_', ' ', snake_case($param)));
+        
+        return View::make('admins.articles.edit')
+                ->with('path', $param)
+                ->with('markdown', $content)
+                ->with('subject', $subject);
     }
 
     /**

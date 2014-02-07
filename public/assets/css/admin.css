@@ -1,0 +1,9 @@
+body {
+    padding-top: 0px !important;
+}
+.row {
+    margin: 0px;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px !important;
+}

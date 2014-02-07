@@ -52,6 +52,16 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
         'uses' => 'AdminController@logout'
     ));
     
+    Route::post('preview', array(
+        'as' => 'admin.preview',
+        'uses' => 'MarkdownController@preview'
+    ));
+    
+    Route::get('detail/{article}', array(
+        'as' => 'admin.detailartikel',
+        'uses' => 'MarkdownController@bacaArtikel'
+    ));
+    
     Route::resource('article', 'ArticleController');
 });
 

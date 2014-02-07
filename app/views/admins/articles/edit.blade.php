@@ -18,10 +18,10 @@ Web developer
 <div class="row">
     <div class="col-sm-10">
         <div class="page-header remove-top-margin">
-            <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Cipta artikel baru</h3>
+            <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Ubah artikel</h3>
         </div>
         <div id="alertbox"></div>        
-        <div id="editor"></div>
+        <div id="editor">{{ $markdown }}</div>
         <div id="editor2"></div>
         <hr />
     </div>    
@@ -78,10 +78,10 @@ Web developer
             $('input[name=uri]').focus();
             return false;
         }
-        var urls = "{{ route('admin.article.store') }}";
+        var urls = "{{ route('admin.article.update') }}";
         $.ajax({
             url: urls,
-            type: 'POST',
+            type: 'PUT',
             data: {
                 markdown: editor.getSession().getValue(),
                 subject: $('input[name=uri]').val()

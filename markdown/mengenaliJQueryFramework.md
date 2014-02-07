@@ -1,43 +1,8 @@
-@extends('layouts.admin')
+Dikala malam tiba
+================
 
-@section('title')
-Web developer
-@endsection
-
-@section('style')
-{{ HTML::style('assets/js/google-code-prettify/prettify.css') }}
-<style type="text/css" media="screen">
-    #editor { 
-        height: 600px;
-        width: 100%;
-    }
-</style>
-@endsection
-
-@section('content')
-<div class="row">
-    <div class="col-sm-10">
-        <div class="page-header remove-top-margin">
-            <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Cipta artikel baru</h3>
-        </div>
-        <div id="alertbox"></div>        
-        <div id="editor"></div>
-        <div id="editor2"></div>
-        <hr />
-    </div>    
-    <div class="col-sm-2">
-        <button class="btn btn-info btn-sm btn-block" id="preview"><i class="fa fa-file-o fa-fw"></i> Pratonton</button>
-        <button class="btn btn-primary btn-sm btn-block" id="save"><i class="fa fa-save fa-fw"></i> Simpan</button>
-        <button class="btn btn-danger btn-sm btn-block"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
-        <hr />
-        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Topic URI register" required />
-    </div>
-</div>
-@endsection
-
-@section('script')
-{{ HTML::script('assets/js/ace-builds-master/src-min-noconflict/ace.js') }}
-{{ HTML::script('assets/js/google-code-prettify/prettify.js') }}
+<?prettify?>
+```
 <script>    
     var editor;
     $(document).ready(function() {
@@ -93,4 +58,6 @@ Web developer
         });
     });
 </script>
-@endsection
+```
+tetetetetttte   
+tdasttsds
