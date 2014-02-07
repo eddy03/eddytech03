@@ -45,12 +45,6 @@ class ArticleController extends \BaseController {
             //Refer Route name admin.detailartikel
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($param)
     {
         $articles = $this->article->where('filename', $param . '.md')->first(array('status', 'snippet'));
@@ -68,12 +62,6 @@ class ArticleController extends \BaseController {
                 ->with('subject', $subject);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function update($subject)
     {
         $subject = Input::get('subject');
@@ -96,13 +84,7 @@ class ArticleController extends \BaseController {
         
         return URL::route('admin.article.edit', array(camel_case($subject)));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+    
     public function destroy($id)
     {
         $articles = $this->article->where('filename', Input::get('filename'))->first();
