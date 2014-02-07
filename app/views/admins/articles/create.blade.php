@@ -29,7 +29,7 @@ Web developer
         <hr class="hidden-lg" />
         <button class="btn btn-info btn-sm btn-block" id="preview"><i class="fa fa-file-o fa-fw"></i> Pratonton</button>
         <button class="btn btn-primary btn-sm btn-block" id="save"><i class="fa fa-save fa-fw"></i> Simpan</button>
-        <button class="btn btn-danger btn-sm btn-block"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
+        <button class="btn btn-danger btn-sm btn-block" id="batal" urls="{{ route('admin.article.index') }}"><i class="fa fa-trash-o fa-fw"></i> Batal</button>
         <hr />
         <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Mapping uri with filename" required />
         <hr />
@@ -104,6 +104,9 @@ Web developer
                 window.location.href = msg;
             }
         });
+    });
+    $('#batal').click(function() {
+        window.location.href = $(this).attr('urls');
     });
 </script>
 @endsection
