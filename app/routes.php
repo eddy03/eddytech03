@@ -81,4 +81,8 @@ Route::group(array(), function() {
         $usr->save();
 
     });
+    
+    Route::get('testpath', function() {
+        return base_path();
+    });
 });
