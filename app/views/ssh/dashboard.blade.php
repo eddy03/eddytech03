@@ -42,7 +42,7 @@ $('#pull').click(function() {
         },
         success: function(msg) {
             console.log(msg);
-            //$('#message').html(msg.messages);
+            $('#message').html(msg.messages);
         }
     });
 });
