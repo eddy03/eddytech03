@@ -23,7 +23,7 @@ Web developer
         </div>
         @if(Session::has('done'))
         <div class="alert alert-success">
-            <i class="fa fa-info fa-fw"></i> {{ Session::get('flash_done') }}
+            <i class="fa fa-info fa-fw"></i> {{ Session::get('done') }}
         </div>
         @endif
         <div id="editor">{{{ $markdown }}}</div>
