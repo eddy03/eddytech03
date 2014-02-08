@@ -2,11 +2,13 @@
 
 class ArticleController extends \BaseController {
     
-    private $article;
+    private $article,
+            $path;
     
     public function __construct(Article $article)
     {
         $this->article = $article;
+        $this->path = 'markdown';
     }
 
     public function index()
@@ -23,7 +25,6 @@ class ArticleController extends \BaseController {
 
     public function store()
     {
-        $path = 'markdown';
         $subject = Input::get('subject');
         $filename = camel_case($subject) . '.md';
         
@@ -33,10 +34,10 @@ class ArticleController extends \BaseController {
         $this->article->filename = $filename;
         $this->article->save();
         
-        if(!File::isWritable($path))
+        if(!File::isWritable($this->path))
             return 'error : Path is not writeable!' ;
         
-        File::put($path . DIRECTORY_SEPARATOR . $filename, Input::get('markdown'));
+        File::put($this->path . DIRECTORY_SEPARATOR . $filename, Input::get('markdown'));
         
         //Set the session flash to note the user process is completed
         Session::flash('done', 'Artikel telah berjaya disimpan');
@@ -78,8 +79,8 @@ class ArticleController extends \BaseController {
         $articles->snippet = Input::get('snippet');
         $articles->save();
         
-        $filepath = 'markdown/' . $filename;
-        $oldpath = 'markdown/' . Input::get('filename');
+        $filepath = $this->path . DIRECTORY_SEPARATOR . $filename;
+        $oldpath = $this->path . DIRECTORY_SEPARATOR . Input::get('filename');
         File::delete($oldpath);
         File::put($filepath, Input::get('markdown'));
         
