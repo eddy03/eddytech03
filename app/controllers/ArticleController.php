@@ -8,7 +8,7 @@ class ArticleController extends \BaseController {
     public function __construct(Article $article)
     {
         $this->article = $article;
-        $this->path = 'markdown';
+        $this->path = base_path() . DIRECTORY_SEPARATOR . 'markdown';
     }
 
     public function index()
