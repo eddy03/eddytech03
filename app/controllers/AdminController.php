@@ -20,7 +20,7 @@ class AdminController extends \BaseController {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
             return Redirect::route('admin.dashboard');
         }
-        
+                
         return Redirect::route('admin.login')->with('flash_errors', 'Maklumat yang dimasukkan tidak tepat!');
     }
     

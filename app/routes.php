@@ -45,28 +45,49 @@ Route::group(array('before' => 'check'), function() {
 
 //Authenticate administrator routes
 Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
-    //Dashboard
-    Route::get('dashboard', array(
-        'as' => 'admin.dashboard',
-        'uses' => 'AdminController@dashboard'
-    ));
+    
     //Logout
     Route::get('logout', array(
         'as' => 'admin.logout',
         'uses' => 'AdminController@logout'
     ));
     
-    Route::post('preview', array(
-        'as' => 'admin.preview',
-        'uses' => 'MarkdownController@preview'
+    Route::group(array('before' => 'isEddy'), function() {
+        
+        //Dashboard
+        Route::get('dashboard', array(
+            'as' => 'admin.dashboard',
+            'uses' => 'AdminController@dashboard'
+        ));
+
+        Route::post('preview', array(
+            'as' => 'admin.preview',
+            'uses' => 'MarkdownController@preview'
+        ));
+
+        Route::get('detail/{article}', array(
+            'as' => 'admin.detailartikel',
+            'uses' => 'MarkdownController@bacaArtikel'
+        ));
+
+        Route::resource('article', 'ArticleController');
+    });
+});
+
+Route::group(array('before' => 'auth', 'prefix' => 'ssh'), function() {
+    
+    Route::get('/', array(
+        'as' => 'admin.ssh.dashboard',
+        'uses' => 'SSHController@dashboard'
     ));
     
-    Route::get('detail/{article}', array(
-        'as' => 'admin.detailartikel',
-        'uses' => 'MarkdownController@bacaArtikel'
-    ));
-    
-    Route::resource('article', 'ArticleController');
+    Route::group(array('before' => 'ajax'), function() {
+        
+        Route::get('cmd', array(
+            'as' => 'admin.ssh.cmd',
+            'uses' => 'SSHController@cmd'
+        ));
+    });
 });
 
 ////////////////////////////////////////
@@ -78,6 +99,17 @@ Route::group(array(), function() {
 
         $usr->email = 'eddytech03@gmail.com';
         $usr->password = Hash::make('eddy03');
+        $usr->level = 1;
+        $usr->save();
+
+    });
+    
+    Route::get('savevespa', function() {
+        $usr = new User();
+
+        $usr->email = 'azwanICT@gmail.com';
+        $usr->password = Hash::make('vespa123');
+        $usr->level = 2;
         $usr->save();
 
     });

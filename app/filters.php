@@ -34,15 +34,25 @@ App::after(function($request, $response)
 */
 
 Route::filter('auth', function() {
-    if (Auth::guest())
+    if(Auth::guest())
         return Redirect::route('home');
 });
 
 Route::filter('check', function() {
-    if (!Auth::guest())
+    if(!Auth::guest())
         return Redirect::route('admin.dashboard');
 });
 
+Route::filter('isEddy', function() {
+    if(Auth::user()->level != 1)
+        return Redirect::route('admin.ssh.dashboard');
+});
+
+Route::filter('ajax', function() {
+    if (!Request::ajax()) {
+        return Redirect::route('admin.ssh.dashboard');
+    }
+});
 
 Route::filter('auth.basic', function()
 {
