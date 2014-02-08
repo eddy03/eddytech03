@@ -28,14 +28,15 @@ System Management using Git
 $(document).ready(function() {
     
 });
-$('#pull').click(function() {
+$('.pull').click(function() {
+    var element = $(this);
     var urls = "{{ route('admin.ssh.cmd') }}";
     $.ajax({
         url: urls,
         data: {
-            cmd: 'git pull',
+            cmd: element.attr('cmd'),
             auth: '{{ Auth::user()->email }}',
-            system: $(this).attr('system')
+            system: element.attr('system')
         },
         error: function(msg) {
             alert(msg.responseText);
