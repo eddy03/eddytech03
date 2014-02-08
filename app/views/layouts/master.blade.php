@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title') | Edi Abdul Rahman</title>
-        {{ HTML::style('components/bootswatch/united/bootstrap.min.css') }}
+        {{ HTML::style('components/bootswatch/yeti/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('assets/css/style.css') }}
         

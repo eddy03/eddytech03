@@ -1,5 +1,6 @@
 body {
     padding-top: 70px;
+    background: #f4f4f4;
 }
 .remove-margin {
     margin: 0px;
@@ -12,4 +13,21 @@ body {
 }
 .remove-top-margin {
     margin-top: 0px !important;
+}
+.articles {
+    background: #fff;
+    padding-bottom: 15px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 3px 2px 1px #ccc;
+    box-shadow: 0 3px 2px 1px #ccc;
+    margin-bottom: 15px;
+}
+.read-articles {
+    background: #fff;
+    padding: 5px 15px 25px 15px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 3px 2px 1px #ccc;
+    box-shadow: 0 3px 2px 1px #ccc;
 }

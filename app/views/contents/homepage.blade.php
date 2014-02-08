@@ -5,13 +5,29 @@ Web developer
 @endsection
 
 @section('style')
+<style>
+    a {
+        color: #222222;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+</style>
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-sm-9">
         @if(count($articles) > 0)
-        
+        @foreach($articles as $row)
+        <div class="col-xs-12 articles">
+            <h2 class="page-header"><a href="{{ URL::route('artikel', array(str_replace('.md', '', $row->filename))) }}">{{ $row->subject }}</a></h2>
+            <p>
+                {{ $row->snippet }}
+            </p>
+        </div>
+        @endforeach
         @else
         <div class="alert alert-info">
             <i class="fa fa-meh-o fa-fw"></i> Tiada artikel untuk dipaparkan..... 
@@ -24,9 +40,9 @@ Web developer
     <div class="col-sm-3">
         <form role="form">
             <div class="input-group">
-                <input type="text" name="search" id="search" class="form-control input-sm" placeholder="Carian artikel..." />
+                <input type="text" name="search" id="search" class="form-control" placeholder="Carian artikel..." />
                 <span class="input-group-btn">
-                    <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search fa-fw"></i></button>
+                    <button class="btn btn-primary" type="button"><i class="fa fa-search fa-fw"></i></button>
                 </span>
             </div>            
         </form>

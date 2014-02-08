@@ -23,6 +23,10 @@ Route::group(array(), function() {
         'as' => 'project',
         'uses' => 'HomeController@showProjectList'
     ));
+    Route::get('artikel/{article}', array(
+        'as' => 'artikel',
+        'uses' => 'HomeController@bacaArtikel'
+    ));
 });
 
 //Administrator route authentication routes
