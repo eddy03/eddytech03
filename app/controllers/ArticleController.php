@@ -23,6 +23,7 @@ class ArticleController extends \BaseController {
 
     public function store()
     {
+        $path = 'markdown';
         $subject = Input::get('subject');
         $filename = camel_case($subject) . '.md';
         
@@ -32,7 +33,10 @@ class ArticleController extends \BaseController {
         $this->article->filename = $filename;
         $this->article->save();
         
-        File::put('markdown/' . $filename, Input::get('markdown'));
+        if(!File::isWritable($path))
+            return 'error : Path is not writeable!' ;
+        
+        File::put($path . DIRECTORY_SEPARATOR . $filename, Input::get('markdown'));
         
         //Set the session flash to note the user process is completed
         Session::flash('done', 'Artikel telah berjaya disimpan');

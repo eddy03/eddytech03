@@ -101,7 +101,10 @@ Web developer
                 snippet: $('textarea[name=snippet]').val()
             },
             success: function(msg) {
-                window.location.href = msg;
+                if(msg.indexOf('error') > -1)
+                    console.log(msg);
+                else
+                    window.location.href = msg;
             }
         });
     });
