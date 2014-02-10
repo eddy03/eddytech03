@@ -13,6 +13,9 @@ Web developer
     a:hover {
         text-decoration: none;
     }
+    .articles h2 {
+        text-transform: capitalize;
+    }
 </style>
 @endsection
 
