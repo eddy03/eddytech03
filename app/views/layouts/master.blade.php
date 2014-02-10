@@ -35,7 +35,7 @@
         @yield('script')
         <script>
             $(document).ready(function() {
-                $('.navbar-brand').addClass('animated wobble');
+                $('.navbar-brand').addClass('animated rollIn');
             });
         </script>
     </body>
