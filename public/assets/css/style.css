@@ -31,3 +31,8 @@ body {
     -webkit-box-shadow: 0 3px 2px 1px #ccc;
     box-shadow: 0 3px 2px 1px #ccc;
 }
+pre {
+    background: #f4f4f4 !important;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
