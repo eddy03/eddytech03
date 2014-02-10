@@ -7,6 +7,7 @@
 	<title>@yield('title') | Edi Abdul Rahman</title>
         {{ HTML::style('components/bootswatch/yeti/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
+        {{ HTML::style('components/animate.css/animate.min.css') }}
         {{ HTML::style('assets/css/style.css') }}
         
         @yield('style')
@@ -32,5 +33,10 @@
         {{ HTML::script('components/jquery/jquery.min.js') }}
         {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
         @yield('script')
+        <script>
+            $(document).ready(function() {
+                $('.navbar-brand').addClass('animated wobble');
+            });
+        </script>
     </body>
 </html>
