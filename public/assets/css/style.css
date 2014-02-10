@@ -36,3 +36,16 @@ pre {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
+.navbar-default .navbar-brand {
+    color: #FFA500;
+}
+@-webkit-keyframes myfirst {
+    0%   {color: #FFA500;}
+    25%  {color: #7FFFD4;}
+    50%  {color: #FF00FF;}
+    75%  {color: #7FFF00;}
+    100% {color: #FFA500;}
+}
+.infine-color-shif {
+    -webkit-animation: myfirst 40s infinite;
+}

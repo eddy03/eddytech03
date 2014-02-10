@@ -35,7 +35,9 @@
         @yield('script')
         <script>
             $(document).ready(function() {
-                $('.navbar-brand').addClass('animated rollIn');
+                $('.navbar-brand').addClass('animated rollIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $('.navbar-brand').addClass('infine-color-shif');
+                });
             });
         </script>
     </body>
