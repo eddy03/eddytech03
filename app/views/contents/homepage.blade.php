@@ -23,6 +23,10 @@ Web developer
 <div class="row">
     <div class="col-sm-9">
         @if(count($articles) > 0)
+        <div class="col-xs-12 text-right">
+            {{ $articles->links() }}
+        </div>
+        <div class="clearfix"></div>
         @foreach($articles as $row)
         <div class="col-xs-12 articles">
             <h2 class="page-header"><a href="{{ URL::route('artikel', array(str_replace('.md', '', $row->filename))) }}">{{ $row->subject }}</a></h2>
@@ -30,6 +34,8 @@ Web developer
                 {{ $row->snippet }}
             </p>
         </div>
+        <div class="clearfix"></div>
+        <hr />
         @endforeach
         @else
         <div class="alert alert-info">
@@ -58,6 +64,9 @@ Web developer
 <script>
 $(document).ready(function() {
     $('#menu-home').addClass('active');
+    setTimeout(function() {
+        $('.articles').addClass('animated pulse');
+    }, 1000);
 });
 </script>
 @endsection

@@ -11,7 +11,7 @@ class HomeController extends BaseController {
     
     public function showHomePage()
     {
-        $articles = $this->article->where('status', 1)->orderBy('created_at', 'DESC')->get(array('subject', 'filename', 'snippet', 'created_at'));
+        $articles = $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(4, array('subject', 'filename', 'snippet', 'created_at'));
         return View::make('contents.homepage')
                 ->with('articles', $articles);
     }
@@ -41,5 +41,5 @@ class HomeController extends BaseController {
     public function showProjectList()
     {
         return View::make('contents.project');
-    }
+    }    
 }

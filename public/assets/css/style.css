@@ -36,6 +36,9 @@ pre {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
+.pagination>li>a, .pagination>li>span {
+    background: #fff;
+}
 .navbar-default .navbar-brand {
     color: #FFA500;
 }
