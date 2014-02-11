@@ -7,8 +7,8 @@
 	<title>@yield('title') | Edi Abdul Rahman</title>
         {{ HTML::style('components/bootswatch/united/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
-        {{ HTML::style('assets/css/style.css') }}
-        {{ HTML::style('assets/css/admin.css') }}        
+        {{ HTML::style('assets/css/style.css?id=101') }}
+        {{ HTML::style('assets/css/admin.css?id=100') }}        
         @yield('style')
     </head>
     
