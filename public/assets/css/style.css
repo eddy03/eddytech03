@@ -42,6 +42,12 @@ pre {
 .navbar-default .navbar-brand {
     color: #FFA500;
 }
+pre code {
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    overflow-x: auto;
+}
 @-webkit-keyframes myfirst {
     0%   {color: #FFA500;}
     25%  {color: #7FFFD4;}
