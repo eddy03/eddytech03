@@ -51,6 +51,7 @@ Web developer
         editor = ace.edit("editor");
         editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/markdown");
+        editor.getSession().setUseWrapMode(true);
         $('#editor').height($(window).height() - 150);
         $('#editor2').slideUp();
         $('#publish').bootstrapSwitch();
