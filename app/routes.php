@@ -43,50 +43,78 @@ Route::group(array('before' => 'check'), function() {
     ));
 });
 
-//Authenticate administrator routes
-Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
+//Any routes that required to be authenticate user
+Route::group(array('before' => 'auth'), function() {
     
-    //Logout
+    //Logout the authenticate user
     Route::get('logout', array(
         'as' => 'admin.logout',
         'uses' => 'AdminController@logout'
     ));
     
-    Route::group(array('before' => 'isEddy'), function() {
-        
-        //Dashboard
-        Route::get('dashboard', array(
-            'as' => 'admin.dashboard',
-            'uses' => 'AdminController@dashboard'
-        ));
-
-        Route::post('preview', array(
-            'as' => 'admin.preview',
-            'uses' => 'MarkdownController@preview'
-        ));
-
-        Route::get('detail/{article}', array(
-            'as' => 'admin.detailartikel',
-            'uses' => 'MarkdownController@bacaArtikel'
-        ));
-
-        Route::resource('article', 'ArticleController');
-    });
-});
-
-Route::group(array('before' => 'auth', 'prefix' => 'ssh'), function() {
-    
-    Route::get('/', array(
-        'as' => 'admin.ssh.dashboard',
-        'uses' => 'SSHController@dashboard'
+    //Show user account details
+    Route::get('akaun', array(
+        'as' => 'admin.akaun',
+        'uses' => 'AdminController@akaun'
     ));
     
-    Route::group(array('before' => 'ajax'), function() {
+    //Process the user account details for updating it
+    Route::post('akaun', array(
+        'as' => 'admin.akaun.cipta',
+        'uses' => 'AdminController@ciptaAkaun'
+    ));
+    
+    //Routes that required to be prefix with 'admin'
+    Route::group(array('prefix' => 'admin'), function() {
         
-        Route::get('cmd', array(
-            'as' => 'admin.ssh.cmd',
-            'uses' => 'SSHController@cmd'
+        //Route that only available for SuperUser (eddy)
+        Route::group(array('before' => 'isEddy'), function() {
+
+            //Dashboard
+            Route::get('dashboard', array(
+                'as' => 'admin.dashboard',
+                'uses' => 'AdminController@dashboard'
+            ));
+            
+            //Article details
+            Route::get('detail/{article}', array(
+                'as' => 'admin.detailartikel',
+                'uses' => 'MarkdownController@bacaArtikel'
+            ));
+
+            //Resourcefull controller to article
+            Route::resource('article', 'ArticleController');
+            
+            //Routes that only avaiable for authenticate user, must be prefix by 'admin', superuser account and also must be call using AJAX
+            Route::group(array('before', 'ajax'), function() {
+                
+                //Preview the articles
+                Route::post('preview', array(
+                    'as' => 'admin.preview',
+                    'uses' => 'MarkdownController@preview'
+                ));
+            });
+        });
+    });
+    
+    //Routes that required to be prefix with 'ssh'
+    Route::group(array('prefix' => 'ssh'), function() {
+    
+        //SSH dashboard
+        Route::get('/', array(
+            'as' => 'admin.ssh.dashboard',
+            'uses' => 'SSHController@dashboard'
         ));
+
+        //Routes that need to be authenticate user, mush be prefix with admin and call using AJAX
+        Route::group(array('before' => 'ajax'), function() {
+            
+            //Execute the ssh command given
+            Route::get('cmd', array(
+                'as' => 'admin.ssh.cmd',
+                'uses' => 'SSHController@cmd'
+            ));
+        });
     });
 });
 

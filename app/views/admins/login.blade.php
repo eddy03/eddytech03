@@ -14,7 +14,11 @@ Web developer
             <h3 class="remove-top-margin">Administration eddytech03</h3>
         </div>
         @if(Session::has('flash_errors'))
-        <div class="alert alert-danger"><i class="fa fa-warning fa-fw"></i> {{ Session::get('flash_errors') }}</div>
+        <div class="alert alert-danger">
+            <strong>
+                <i class="fa fa-warning fa-fw"></i> {{ Session::get('flash_errors') }}
+            </strong>
+        </div>
         @endif
         {{ Form::open(array('route' => 'admin.auth')) }}
             <div class="input-group input-group-sm">
