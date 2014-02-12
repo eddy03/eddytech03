@@ -147,7 +147,7 @@ Route::group(array(), function() {
     });
     
     Route::get('showtable', function() {
-        $usr = User::all();
+        $usr = Article::all();
         return '<pre>' . print_r($usr, true) . '</pre>';
     });
 });
