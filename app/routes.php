@@ -122,19 +122,23 @@ Route::group(array('before' => 'auth'), function() {
 //Test or development route
 ////////////////////////////////////////
 Route::group(array(), function() {
+    
+    //Register superadmin in the system
     Route::get('saveuser', function() {
         $usr = new User();
-
+        //email address
         $usr->email = 'eddytech03@gmail.com';
+        //passwords
         $usr->password = Hash::make('eddy03');
+        //level superadmin
         $usr->level = 1;
         $usr->save();
 
     });
     
+    //Register basic staff in the system
     Route::get('savevespa', function() {
         $usr = new User();
-
         $usr->email = 'azwanICT@gmail.com';
         $usr->password = Hash::make('vespa123');
         $usr->level = 2;
@@ -142,7 +146,8 @@ Route::group(array(), function() {
 
     });
     
-    Route::get('testpath', function() {
-        return base_path();
+    Route::get('showtable', function() {
+        $usr = User::all();
+        return '<pre>' . print_r($usr, true) . '</pre>';
     });
 });
