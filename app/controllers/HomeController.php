@@ -78,5 +78,10 @@ class HomeController extends BaseController {
     public function showProjectList()
     {
         return View::make('contents.project');
-    }    
+    }
+    
+    public function showChangelog()
+    {
+        return View::make('contents.changelog');
+    }
 }

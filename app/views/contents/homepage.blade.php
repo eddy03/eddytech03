@@ -62,6 +62,7 @@ Selamat datang
             <span class="help-block"><i class="fa fa-info fa-fw"></i> Masih didalam pembinaan</span>
         </form>
         <hr />
+        @include('contents.sub_sidebar')
     </div>
 </div>
 @endsection

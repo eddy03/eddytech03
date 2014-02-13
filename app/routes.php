@@ -23,9 +23,15 @@ Route::group(array(), function() {
         'as' => 'project',
         'uses' => 'HomeController@showProjectList'
     ));
+    //read the articles
     Route::get('artikel/{article}', array(
         'as' => 'artikel',
         'uses' => 'HomeController@bacaArtikel'
+    ));
+    //view the website changelog
+    Route::get('changelog', array(
+        'as' => 'changelog',
+        'uses' => 'HomeController@showChangelog'
     ));
 });
 
