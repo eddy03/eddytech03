@@ -75,12 +75,6 @@ Route::group(array('before' => 'auth'), function() {
                 'as' => 'admin.dashboard',
                 'uses' => 'AdminController@dashboard'
             ));
-            
-            //Article details
-            Route::get('detail/{article}', array(
-                'as' => 'admin.detailartikel',
-                'uses' => 'MarkdownController@bacaArtikel'
-            ));
 
             //Resourcefull controller to article
             Route::resource('article', 'ArticleController');

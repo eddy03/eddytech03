@@ -52,7 +52,7 @@ class MarkdownController extends \BaseController {
      * @return mixed
      */
     static public function bukaArtikel($filename, $auto_parse = true) {
-        $path = base_path() . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . $filename . '.md';
+        $path = Conf::markdownPath(true) . $filename . '.md';
         if(!File::exists($path))
             return false;
         return ($auto_parse)?

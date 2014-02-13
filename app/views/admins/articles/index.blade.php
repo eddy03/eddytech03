@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Web developer
+Artikel
 @endsection
 
 @section('style')
@@ -28,7 +28,7 @@ Web developer
         </div>        
     </div>
     <div class="col-sm-3 col-md-2 col-lg-2">
-        <a href="{{ route('admin.article.create') }}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-pencil fa-fw"></i> Cipta post baru</a>
+        <a href="{{ route('admin.article.create') }}" class="btn btn-primary pull-right"><i class="fa fa-pencil fa-fw"></i> Cipta post baru</a>
     </div>
     <div class="col-xs-12">
         @if(count($articles) == 0)
@@ -49,7 +49,7 @@ Web developer
                 <tr>
                     <td></td>
                     <td>{{ $row->subject }}</td>
-                    <td><a href="{{ URL::route('admin.detailartikel', array(camel_case($row->subject))) }}"><i class="fa fa-pencil fa-fw"></i></a></td>
+                    <td><a href="{{ URL::route('admin.article.show', array(camel_case($row->urls))) }}"><i class="fa fa-pencil fa-fw"></i></a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -62,7 +62,7 @@ Web developer
 @section('script')
 <script>
 $(document).ready(function() {
-    //$('#menu-home').addClass('active');
+    $('#menu_artikels, #menu_menu').addClass('active');
 });
 </script>
 @endsection

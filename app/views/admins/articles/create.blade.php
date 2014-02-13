@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Web developer
+Mencipta artikel
 @endsection
 
 @section('style')
@@ -16,28 +16,7 @@ Web developer
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-lg-10">
-        <div class="page-header remove-top-margin">
-            <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Cipta artikel baru</h3>
-        </div>
-        <div id="alertbox"></div>        
-        <div id="editor"></div>
-        <div id="editor2"></div>
-    </div>    
-    <div class="col-lg-2">
-        <hr class="hidden-lg" />
-        <button class="btn btn-info btn-sm btn-block" id="preview"><i class="fa fa-file-o fa-fw"></i> Pratonton</button>
-        <button class="btn btn-primary btn-sm btn-block" id="save"><i class="fa fa-save fa-fw"></i> Simpan</button>
-        <button class="btn btn-danger btn-sm btn-block" id="batal" urls="{{ route('admin.article.index') }}"><i class="fa fa-trash-o fa-fw"></i> Batal</button>
-        <hr />
-        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Mapping uri with filename" required />
-        <hr />
-        <label>Publish?</label> ------ <input type="checkbox" id="publish" class="switch-small" data-on="success" data-off="warning" data-on-label="Ya" data-off-label="Tidak">
-        <hr />
-        <textarea class="form-control" name="snippet" rows="10" placeholder="Snippet bagi artikel ini" required></textarea>
-    </div>
-</div>
+@include('admins.articles.editors')
 @endsection
 
 @section('script')
@@ -47,7 +26,7 @@ Web developer
 <script>    
     var editor;
     $(document).ready(function() {
-        //$('#menu-home').addClass('active');
+        $('#menu_artikels, #menu_menu').addClass('active');
         editor = ace.edit("editor");
         editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/markdown");
@@ -83,8 +62,12 @@ Web developer
         }
     });
     $('#save').click(function() {
-        if($('input[name=uri]').val().length == 0) {
-            $('input[name=uri]').focus();
+        if($('input[name=subject]').val().length == 0) {
+            $('input[name=subject]').focus();
+            return false;
+        }
+        if($('input[name=urls]').val().length == 0) {
+            $('input[name=urls]').focus();
             return false;
         }
         if($('textarea[name=snippet]').val().length == 0) {
@@ -97,9 +80,10 @@ Web developer
             type: 'POST',
             data: {
                 markdown: editor.getSession().getValue(),
-                subject: $('input[name=uri]').val(),
+                subject: $('input[name=subject]').val(),
                 status: $('#publish').bootstrapSwitch('state'),
-                snippet: $('textarea[name=snippet]').val()
+                snippet: $('textarea[name=snippet]').val(),
+                urls: $('input[name=urls]').val()
             },
             success: function(msg) {
                 if(msg.indexOf('error') > -1)

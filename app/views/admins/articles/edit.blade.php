@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Web developer
+Mengubah artikel {{ $articles->subject }}
 @endsection
 
 @section('style')
@@ -16,34 +16,7 @@ Web developer
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-sm-10">
-        <div class="page-header remove-top-margin">
-            <h3 class="remove-top-margin"><i class="fa fa-pencil fa-fw"></i> Ubah artikel</h3>
-        </div>
-        @if(Session::has('done'))
-        <div class="alert alert-success">
-            <i class="fa fa-info fa-fw"></i> {{ Session::get('done') }}
-        </div>
-        @endif
-        <div id="editor">{{{ $markdown }}}</div>
-        <div id="editor2"></div>
-        <hr />
-    </div>    
-    <div class="col-sm-2">
-        
-        <button class="btn btn-info btn-sm btn-block" id="preview"><i class="fa fa-file-o fa-fw"></i> Pratonton</button>
-        <button class="btn btn-primary btn-sm btn-block" id="save"><i class="fa fa-save fa-fw"></i> Simpan</button>
-        <button class="btn btn-danger btn-sm btn-block" id="delete"><i class="fa fa-trash-o fa-fw"></i> Padam</button>
-        <hr />
-        <input type="text" name="uri" id="uri" class="form-control input-sm" placeholder="Topic URI register" value="{{ $subject }}" required />
-        <input type="hidden" name="article-id" value="{{ $path . '.md' }}" />
-        <hr />
-        <label>Publish?</label> ------ <input type="checkbox" id="publish" {{ ($articles->status == 1)? 'checked' : '' }} class="switch-small" data-on="success" data-off="warning" data-on-label="Ya" data-off-label="Tidak">
-        <hr />
-        <textarea class="form-control" name="snippet" rows="10" placeholder="Snippet bagi artikel ini" required>{{ $articles->snippet }}</textarea>
-    </div>
-</div>
+@include('admins.articles.editors')
 @endsection
 
 @section('script')
@@ -54,7 +27,7 @@ Web developer
 <script>    
     var editor;
     $(document).ready(function() {
-        //$('#menu-home').addClass('active');
+        $('#menu_artikels, #menu_menu').addClass('active');
         editor = ace.edit("editor");
         editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/markdown");
@@ -90,8 +63,12 @@ Web developer
         }
     });
     $('#save').click(function() {
-        if($('input[name=uri]').val().length == 0) {
-            $('input[name=uri]').focus();
+        if($('input[name=subject]').val().length == 0) {
+            $('input[name=subject]').focus();
+            return false;
+        }
+        if($('input[name=urls]').val().length == 0) {
+            $('input[name=urls]').focus();
             return false;
         }
         if($('textarea[name=snippet]').val().length == 0) {
@@ -104,14 +81,26 @@ Web developer
             type: 'PUT',
             data: {
                 markdown: editor.getSession().getValue(),
-                subject: $('input[name=uri]').val(),
-                filename: $('input[name=article-id]').val(),
+                subject: $('input[name=subject]').val(),
+                urls: $('input[name=urls]').val(),
+                articleID: $('input[name=article-id]').val(),
                 status: $('#publish').bootstrapSwitch('state'),
                 snippet: $('textarea[name=snippet]').val()
             },
             success: function(msg) {
-                //console.log(msg);
-                window.location.href = msg;
+                if(msg.indexOf('error') > -1)
+                    console.log(msg);
+                else {
+                    var code = '<div class="alert alert-success">\n\
+                                    <i class="fa fa-info fa-fw"></i> Artikel telah berjaya dikemaskini\n\
+                                </div>';
+                    $('#notification').html(code).slideDown('slow');
+                    setTimeout(function() {
+                        $('#notification').slideUp('slow', function() {
+                            $('#notification').empty()
+                        });
+                    }, 4000);
+                }
             }
         });
     });
@@ -123,7 +112,7 @@ Web developer
                     url: urls,
                     type: 'DELETE',
                     data: {
-                        filename: $('input[name=article-id]').val()
+                        aID: $('input[name=article-id]').val()
                     },
                     success: function(msg) {
                         //console.log(msg);

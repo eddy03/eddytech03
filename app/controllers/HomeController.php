@@ -35,9 +35,9 @@ class HomeController extends BaseController {
      */
     public function showHomePage()
     {
-        $articles = $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(4, array('subject', 'filename', 'snippet', 'created_at'));
+        $articles = $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(4, array('subject', 'urls', 'snippet', 'created_at'));
         return View::make('contents.homepage')
-                ->with('articles', $articles);
+                ->withArticles($articles);
     }
     
     /**
@@ -46,21 +46,18 @@ class HomeController extends BaseController {
      * @param string $artikel
      * @return Responses
      */
-    public function bacaArtikel($artikel)
+    public function bacaArtikel($urls)
     {
-        $articles = $this->article->where('filename', $artikel . '.md')->first(array('subject', 'created_at'));
-        
-        $content = MarkdownController::bukaArtikel($artikel);
-        if($content === false)
+        Cache::forget('article_query');
+        $content = MarkdownController::bukaArtikel($urls);        
+        if($content === false) {
             return App::abort(404);
+        }
         
-        $subject = ucfirst(str_replace('_', ' ', snake_case($artikel)));
-        
+        $articles = $this->article->where('urls', $urls)->remember(30, 'article_query')->first(array('subject', 'urls', 'created_at'));
         return View::make('contents.articles')
-                ->with('path', $artikel)
                 ->with('articles', $articles)
-                ->with('markdown', $content)
-                ->with('subject', $subject);
+                ->with('markdown', $content);
     }
     
     /**

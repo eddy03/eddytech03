@@ -21,6 +21,9 @@
 <div class="row">
     <div class="col-xs-12 text-right calendars">
         <i class="fa fa-calendar fa-fw"></i> Artikel ini dicipta pada : {{ date('d-m-Y', strtotime($articles->created_at)) }}
+        @if(Auth::check())
+        <i class="fa fa-ellipsis-v fa-fw"></i><a href="{{ URL::route('admin.article.edit', array($articles->urls)) }}"><i class="fa fa-edit fa-fw" title="Ubah artikel ini"></i></a>
+        @endif
     </div>
     <div class="col-xs-12">
         <div class="read-articles">

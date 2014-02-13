@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Web developer
+Selamat datang
 @endsection
 
 @section('style')
@@ -29,7 +29,12 @@ Web developer
         <div class="clearfix"></div>
         @foreach($articles as $row)
         <div class="col-xs-12 articles">
-            <h2 class="page-header"><a href="{{ URL::route('artikel', array(str_replace('.md', '', $row->filename))) }}">{{ $row->subject }}</a></h2>
+            <h2 class="page-header">
+                <a href="{{ URL::route('artikel', array($row->urls)) }}">{{ $row->subject }}</a>
+                @if(Auth::check())
+                <a href="{{ URL::route('admin.article.edit', array($row->urls)) }}"><i class="fa fa-edit fa-fw pull-right" title="Ubah artikel ini"></i></a>
+                @endif
+            </h2>
             <p>
                 {{ $row->snippet }}
             </p>
@@ -49,11 +54,12 @@ Web developer
     <div class="col-sm-3">
         <form role="form">
             <div class="input-group">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Carian artikel..." />
+                <input type="text" name="search" id="search" class="form-control" placeholder="Carian artikel... " />                
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="button"><i class="fa fa-search fa-fw"></i></button>
                 </span>
-            </div>            
+            </div>
+            <span class="help-block"><i class="fa fa-info fa-fw"></i> Masih didalam pembinaan</span>
         </form>
         <hr />
     </div>
