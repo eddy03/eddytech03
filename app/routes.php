@@ -91,7 +91,7 @@ Route::group(array('before' => 'auth'), function() {
                 //Preview the articles
                 Route::post('preview', array(
                     'as' => 'admin.preview',
-                    'uses' => 'MarkdownController@preview'
+                    'uses' => 'AdminController@preview'
                 ));
             });
         });

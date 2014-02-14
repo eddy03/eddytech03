@@ -25,12 +25,14 @@ Mencipta artikel
 {{ HTML::script('components/bootstrap-switch/build/js/bootstrap-switch.min.js') }}
 <script>    
     var editor;
-    $(document).ready(function() {
-        $('#menu_artikels, #menu_menu').addClass('active');
+    $(document).ready(function() {        
+        //initialize the ACE editor
         editor = ace.edit("editor");
         editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/markdown");
         editor.getSession().setUseWrapMode(true);
+        //other function
+        $('#menu_artikels, #menu_menu').addClass('active');
         $('#editor').height($(window).height() - 150);
         $('#editor2').slideUp();
         $('#publish').bootstrapSwitch();
@@ -86,10 +88,10 @@ Mencipta artikel
                 urls: $('input[name=urls]').val()
             },
             success: function(msg) {
-                if(msg.indexOf('error') > -1)
-                    console.log(msg);
+                if(msg.code == '200')
+                    window.location.href = msg.message; 
                 else
-                    window.location.href = msg;
+                    console.log(msg.code + ' : ' + msg.message);
             }
         });
     });

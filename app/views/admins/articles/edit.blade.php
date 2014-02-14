@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Mengubah artikel {{ $articles->subject }}
+Mengubah artikel {{ $article->subject }}
 @endsection
 
 @section('style')
@@ -88,18 +88,19 @@ Mengubah artikel {{ $articles->subject }}
                 snippet: $('textarea[name=snippet]').val()
             },
             success: function(msg) {
-                if(msg.indexOf('error') > -1)
-                    console.log(msg);
-                else {
+                if(msg.code == '200') {
                     var code = '<div class="alert alert-success">\n\
                                     <i class="fa fa-info fa-fw"></i> Artikel telah berjaya dikemaskini\n\
                                 </div>';
                     $('#notification').html(code).slideDown('slow');
                     setTimeout(function() {
                         $('#notification').slideUp('slow', function() {
-                            $('#notification').empty()
+                            $('#notification').empty();
                         });
                     }, 4000);
+                }
+                else {
+                    console.log(msg.message)
                 }
             }
         });
@@ -121,6 +122,9 @@ Mengubah artikel {{ $articles->subject }}
                 });
             }
         }); 
+    });
+    $('#batal').click(function() {
+        window.location.href = $(this).attr('urls');
     });
 </script>
 @endsection

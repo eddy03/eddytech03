@@ -64,6 +64,12 @@ class AdminController extends \BaseController {
         return View::make('account.maklumat');
     }
     
+    public function preview()
+    {
+        $markdown = new Markdown();
+        return $markdown->defaultTransform(Input::get('markdown'));
+    }
+    
     /**
      * Save the modified user account and auto deauthorize the user from the system
      * 
