@@ -2,6 +2,31 @@ body {
     padding-top: 70px;
     background: #f4f4f4;
 }
+html, body {
+    height: 100%;
+    width: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -63px;
+  padding-bottom: 20px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 30px; 
+}
+.site-footer {
+  /*background: orange;*/
+}
+.footer-hr {
+    margin-bottom: 10px;
+}
+
 .remove-margin {
     margin: 0px;
 }
@@ -47,6 +72,12 @@ pre code {
     word-wrap: normal !important;
     white-space: pre !important;
     overflow-x: auto;
+}
+.blueme {
+    color: #00526e;
+}
+.blueme:hover {
+    color: #17a81d;
 }
 @-webkit-keyframes myfirst {
     0%   {color: #FFA500;}
