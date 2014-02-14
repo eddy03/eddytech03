@@ -33,7 +33,7 @@ class ArticleController extends \BaseController {
     public function __construct(Article $article)
     {
         $this->beforeFilter('ajax', array(
-            'only' => array('store')
+            'only' => array('store', 'edit', 'destroy')
         ));
         
         $this->article = $article;
@@ -65,7 +65,6 @@ class ArticleController extends \BaseController {
     /**
      * Store the articles into the database. This method should be filter as AJAX
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @return String
      */
     public function store()
@@ -99,9 +98,10 @@ class ArticleController extends \BaseController {
     }
 
     /**
-     * Un-used resoucefull method, Refer Route name admin.detailartikel
+     * Show the selected articles content
      * 
-     * @param int $id
+     * @param string $urls
+     * @return Responses
      */
     public function show($urls)
     {
@@ -121,7 +121,6 @@ class ArticleController extends \BaseController {
     /**
      * Edit the selected articles
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @param string $param
      * @return Responses
      */
@@ -145,14 +144,15 @@ class ArticleController extends \BaseController {
     }
 
     /**
-     * Update the selected articles
+     * Update the selected articles.  This method should be filter as AJAX
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @param string $subject
      * @return String
      */
     public function update($subject)
     {
+        Cache::forget('article_query');
+        
         $subject = Input::get('subject');
         $urls = Input::get('urls');
         $status = Input::get('status');
@@ -182,7 +182,7 @@ class ArticleController extends \BaseController {
     }
     
     /**
-     * Delete (hide) the articles from being view to the website while keeping it in database
+     * Delete (hide) the articles from being view to the website while keeping it in database. This method should be filter as AJAX
      * 
      * @param int $id
      * @return string
@@ -193,7 +193,7 @@ class ArticleController extends \BaseController {
         $articles->status = 0;
         $articles->save();
         
-        return URL::route('admin.article.index');
+        return URL::route('admin.article.index');        
     }
 
 }
