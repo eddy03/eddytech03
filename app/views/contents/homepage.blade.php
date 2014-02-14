@@ -16,6 +16,10 @@ Selamat datang
     .articles h2 {
         text-transform: capitalize;
     }
+    .search-query-nav {
+        margin-top: 3px;
+        border-radius: 5px;
+    }
 </style>
 @endsection
 
@@ -52,16 +56,6 @@ Selamat datang
         <hr />
     </div>
     <div class="col-sm-3">
-        <form role="form">
-            <div class="input-group">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Carian artikel... " />                
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-search fa-fw"></i></button>
-                </span>
-            </div>
-            <span class="help-block"><i class="fa fa-info fa-fw"></i> Masih didalam pembinaan</span>
-        </form>
-        <hr />
         @include('contents.sub_sidebar')
     </div>
 </div>
@@ -74,6 +68,9 @@ $(document).ready(function() {
     setTimeout(function() {
         $('.articles').addClass('animated pulse');
     }, 1000);
+});
+$('.home-btn').click(function() {
+    window.location.href = $(this).attr('url');
 });
 </script>
 @endsection

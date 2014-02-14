@@ -10,6 +10,11 @@
             <a class="navbar-brand" href="{{ route('home') }}">eddytech03</a>
         </div>
         <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm search-query-nav" name="query" value="{{ Input::get('query') }}" placeholder="Carian artikel..." required />
+                </div>
+            </form>
             <ul class="nav navbar-nav navbar-right">
                 <li id="menu-home"><a href="{{ route('home') }}"><i class="fa fa-home fa-fw"></i> Utama</a></li>                
                 @if(Auth::check())
