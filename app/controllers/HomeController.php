@@ -48,7 +48,6 @@ class HomeController extends BaseController {
      */
     public function bacaArtikel($urls)
     {
-        Cache::forget('article_query');
         $content = MarkdownController::bukaArtikel($urls);        
         if($content === false) {
             return App::abort(404);
