@@ -8,7 +8,7 @@
         {{ HTML::style('components/bootswatch/yeti/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('components/animate.css/animate.min.css') }}
-        {{ HTML::style('assets/css/style.css?id=102') }}        
+        {{ HTML::style('assets/css/style.css?id=103') }}        
         @yield('style')
     </head>
     

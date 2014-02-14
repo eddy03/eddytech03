@@ -64,6 +64,9 @@ pre {
 .pagination>li>a, .pagination>li>span {
     background: #fff;
 }
+.pagination {
+    margin: 0px;
+}
 .navbar-default .navbar-brand {
     color: #FFA500;
 }
