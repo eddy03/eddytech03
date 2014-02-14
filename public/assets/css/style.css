@@ -1,6 +1,32 @@
 body {
     padding-top: 70px;
+    background: #f4f4f4;
 }
+html, body {
+    height: 100%;
+    width: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -63px;
+  padding-bottom: 20px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 30px; 
+}
+.site-footer {
+  /*background: orange;*/
+}
+.footer-hr {
+    margin-bottom: 10px;
+}
+
 .remove-margin {
     margin: 0px;
 }
@@ -12,4 +38,54 @@ body {
 }
 .remove-top-margin {
     margin-top: 0px !important;
+}
+.articles {
+    background: #fff;
+    padding-bottom: 15px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 3px 2px 1px #ccc;
+    box-shadow: 0 3px 2px 1px #ccc;
+    margin-bottom: 15px;
+}
+.read-articles {
+    background: #fff;
+    padding: 5px 15px 25px 15px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 3px 2px 1px #ccc;
+    box-shadow: 0 3px 2px 1px #ccc;
+}
+pre {
+    background: #f4f4f4 !important;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+.pagination>li>a, .pagination>li>span {
+    background: #fff;
+}
+.navbar-default .navbar-brand {
+    color: #FFA500;
+}
+pre code {
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    overflow-x: auto;
+}
+.blueme {
+    color: #00526e;
+}
+.blueme:hover {
+    color: #17a81d;
+}
+@-webkit-keyframes myfirst {
+    0%   {color: #FFA500;}
+    25%  {color: #7FFFD4;}
+    50%  {color: #FF00FF;}
+    75%  {color: #7FFF00;}
+    100% {color: #FFA500;}
+}
+.infine-color-shif {
+    -webkit-animation: myfirst 40s infinite;
 }
