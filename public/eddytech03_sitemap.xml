@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- sitemap-generator-url="http://www.auditmypc.com/free-sitemap-generator.asp" -->
+<!-- This sitemap was created using the free tool found here: http://www.auditmypc.com/free-sitemap-generator.asp -->
+<!-- Audit My PC also offers free security tools to help keep you safe during internet travels -->
+<urlset 
+		xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+<url>
+    <loc>http://eddytech03.com/</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/components/bootswatch/yeti/bootstrap.min.css</loc>
+    <lastmod>2014-02-06T10:14:01+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/components/font-awesome/css/font-awesome.min.css</loc>
+    <lastmod>2013-11-05T20:35:21+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/components/animate.css/animate.min.css</loc>
+    <lastmod>2013-11-24T05:49:42+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/projek</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/tentang</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/artikel/laravelViews</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/artikel/laravelController</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/artikel/laravelRouting</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/artikel/installLaravel</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/changelog</loc>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/img/laravel.png</loc>
+    <lastmod>2014-02-14T10:53:51+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/img/bootstrap.png</loc>
+    <lastmod>2014-02-14T10:53:51+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/img/jquery.png</loc>
+    <lastmod>2014-02-14T10:53:51+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/css/style.css?id=103</loc>
+    <lastmod>2014-02-14T11:14:42+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/img/eddy.jpg</loc>
+    <lastmod>2014-02-12T13:52:26+08:00</lastmod>
+</url>
+<url>
+    <loc>http://eddytech03.com/assets/js/google-code-prettify/prettify.css</loc>
+    <lastmod>2014-02-08T15:20:25+08:00</lastmod>
+</url>
+</urlset>
