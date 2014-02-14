@@ -27,7 +27,7 @@
             @include('layouts.footer')
         </footer>
         
-        {{ HTML::script('components/jquery/jquery.min.js') }}
+        {{ HTML::script('components/jquery/dist/jquery.min.js') }}
         {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
         @yield('script')
         <script>

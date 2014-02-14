@@ -135,5 +135,7 @@ Route::group(array(), function() {
         $usr->save();
 
         File::makeDirectory(base_path() . DIRECTORY_SEPARATOR . 'markdown');
+        
+        return 'Semuanya telah siap. <a href="' . route('home') . '">Kembali</a>';
     });
 });
