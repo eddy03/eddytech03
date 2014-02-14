@@ -26,18 +26,34 @@ class ArticleController extends \BaseController {
     private $path;
     
     /**
+     * The configuration object
+     * 
+     * @var string
+     */
+    private $conf;
+    
+    /**
+     * The markdown object
+     * 
+     * @var string
+     */
+    private $markdown;
+    
+    /**
      * Construct the class attribute details
      * 
      * @param Article $article
      */
-    public function __construct(Article $article)
+    public function __construct(Article $article, Conf $conf, Markdown $md)
     {
         $this->beforeFilter('ajax', array(
-            'only' => array('store')
+            'only' => array('store', 'update', 'destroy')
         ));
         
         $this->article = $article;
-        $this->path = Conf::markdownPath(true, false);
+        $this->conf = $conf;
+        $this->markdown = $md;
+        $this->path = $this->conf->markdownPath(true, false);
     }
 
     /**
@@ -47,9 +63,8 @@ class ArticleController extends \BaseController {
      */
     public function index()
     {
-        $articles = $this->article->where('status', '!=', 0)->get();
-        return View::make('admins.articles.index')
-                ->with('articles', $articles);
+        $articles = $this->article->where('status', '!=', 0)->orderBy('created_at', 'DESC')->get();
+        return View::make('admins.articles.index')->withArticles($articles);
     }
 
     /**
@@ -65,124 +80,97 @@ class ArticleController extends \BaseController {
     /**
      * Store the articles into the database. This method should be filter as AJAX
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @return String
      */
     public function store()
     {
-        $subject = Input::get('subject');
-        $urls = Input::get('urls');
-        $snippet = Input::get('snippet');
-        $status = Input::get('status');
-        $content = Input::get('markdown');
+        $saveStat = $this->article->initSave()->saveArticleFile();
         
-        //cleanup the subject to make it as filename
-        //$clean = preg_replace('~[^\p{L}\p{N}]++~u', '', $subject);        
-        $filename = camel_case($urls) . '.md';
+        //any error?
+        if(is_array($saveStat)) {
+            return Response::json($saveStat);
+        }
         
-        $this->article->subject = $subject;
-        $this->article->status = ($status == 'true')? 1 : 2;
-        $this->article->snippet = $snippet;
-        $this->article->urls = $urls;
-        $this->article->save();
-        
-        if(!File::isWritable($this->path))
-            return 'error : ' . $this->path . ' is not writeable!' ;
-        
-        File::put($this->path . DIRECTORY_SEPARATOR . $filename, $content);
-        
-        //Set the session flash to note the user process is completed
-        Session::flash('done', 'Artikel telah berjaya disimpan');
-        
+        $this->article->saveToDB();
+                
         //Redirect to edit page to prevent making the article twice
-        return URL::route('admin.article.edit', array($urls));
+        return Response::json(array(
+            'code' => '200',
+            'message' => URL::route('admin.article.edit', array($this->article->url))
+        ));
     }
-
+    
     /**
-     * Un-used resoucefull method, Refer Route name admin.detailartikel
+     * Show the selected articles content
      * 
-     * @param int $id
+     * @param string $urls
+     * @return Responses
      */
     public function show($urls)
     {
-        $content = MarkdownController::bukaArtikel($urls);
+        $content = $this->markdown->readFile($urls);
         
-        if($content === false) {
+        if( $content === false) {
             return App::abort(404);
         }
         
         $articles = $this->article->where('urls', $urls)->first();
         
         return View::make('admins.articles.show')
-                ->with('article', $articles)
-                ->with('markdown', $content);
+                ->withArticle($articles)
+                ->withMarkdown($content);
     }
 
     /**
      * Edit the selected articles
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @param string $param
      * @return Responses
      */
     public function edit($urls)
     {
-        $content = MarkdownController::bukaArtikel($urls, false);
+        $content = $this->markdown->readFile($urls, false);
         
-        //The articles cannot be find
         if($content === false) {
             return App::abort(404);
         }
-                
-        //Grab the information from the database
+        
         $articles = $this->article->where('urls', $urls)->first();
         
         return View::make('admins.articles.edit')
-                ->with('path', $urls)
-                ->with('articles', $articles)
-                ->with('markdown', $content)
+                ->withArticle($articles)
+                ->withMarkdown($content)
                 ->withCondition('Ubah');
     }
 
     /**
-     * Update the selected articles
+     * Update the selected articles.  This method should be filter as AJAX
      * 
-     * @todo This method will be having a lot of changes when to use fix URL for each articles selected
      * @param string $subject
-     * @return String
+     * @return Responses
      */
     public function update($subject)
     {
-        $subject = Input::get('subject');
-        $urls = Input::get('urls');
-        $status = Input::get('status');
-        $snippet = Input::get('snippet');
-        $markdown = Input::get('markdown');
-        $aID = Input::get('articleID');
+        $saveStat = $this->article->initSave()->saveArticleFile();
         
-        $filename = camel_case($urls) . '.md';
-                
-        $articles = $this->article->find($aID);        
-        $articles->subject = $subject;
-        $articles->status = ($status == 'true')? 1 : 2;
-        $articles->snippet = $snippet;
-        $articles->save();
+        //any error?
+        if(is_array($saveStat)) {
+            return Response::json($saveStat);
+        }
         
-        $filepath = $this->path . DIRECTORY_SEPARATOR . $filename;
+        $this->article->saveToDB();
         
-        //Delete the old article
-        File::delete($filepath);
-        //Create a new one
-        File::put($filepath, $markdown);
+        //flush out the cache so user wont viewing the old articles
+        Cache::forget('article_query');
         
-        //Set the session flash to note the user process is completed
-        Session::flash('done', 'Artikel telah berjaya disimpan');
-        
-        return URL::route('admin.article.edit', array($urls));
+        return Response::json(array(
+            'code' => '200',
+            'message' => 'Artikel updated'
+        ));
     }
     
     /**
-     * Delete (hide) the articles from being view to the website while keeping it in database
+     * Delete (hide) the articles from being view to the website while keeping it in database. This method should be filter as AJAX
      * 
      * @param int $id
      * @return string
@@ -193,7 +181,6 @@ class ArticleController extends \BaseController {
         $articles->status = 0;
         $articles->save();
         
-        return URL::route('admin.article.index');
+        return URL::route('admin.article.index');        
     }
-
 }

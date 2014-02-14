@@ -91,7 +91,7 @@ Route::group(array('before' => 'auth'), function() {
                 //Preview the articles
                 Route::post('preview', array(
                     'as' => 'admin.preview',
-                    'uses' => 'MarkdownController@preview'
+                    'uses' => 'AdminController@preview'
                 ));
             });
         });
@@ -124,30 +124,16 @@ Route::group(array('before' => 'auth'), function() {
 Route::group(array(), function() {
     
     //Register superadmin in the system
-    Route::get('saveuser', function() {
+    Route::get('setup', function() {
         $usr = new User();
         //email address
-        $usr->email = 'eddytech03@gmail.com';
+        $usr->email = 'admin@admin.com';
         //passwords
-        $usr->password = Hash::make('eddy03');
+        $usr->password = Hash::make('eddytech03');
         //level superadmin
         $usr->level = 1;
         $usr->save();
 
-    });
-    
-    //Register basic staff in the system
-    Route::get('savevespa', function() {
-        $usr = new User();
-        $usr->email = 'azwanICT@gmail.com';
-        $usr->password = Hash::make('vespa123');
-        $usr->level = 2;
-        $usr->save();
-
-    });
-    
-    Route::get('showtable', function() {
-        $usr = Article::all();
-        return '<pre>' . print_r($usr, true) . '</pre>';
+        File::makeDirectory(base_path() . DIRECTORY_SEPARATOR . 'markdown');
     });
 });

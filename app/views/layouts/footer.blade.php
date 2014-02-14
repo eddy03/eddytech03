@@ -14,9 +14,9 @@
     <span class="hidden-xs">
         |
     </span>  
-    Dibangunkan menggunakan <a href="http://laravel.com">{{ HTML::image('assets/img/laravel.png', 'laravel', array('title' => 'Laravel PHP framework')) }}</a> &middot; <a href="http://getbootstrap.com">{{ HTML::image('assets/img/bootstrap.png', 'bootstraps', array('title' => 'Bootstrap css framework')) }}</a> &middot; <a href="http://jquery.com/">{{ HTML::image('assets/img/jquery.png', 'jquery', array('title' => 'jQUery javascript framework')) }}</a>
+    Dibangunkan menggunakan <a href="http://laravel.com" target="_blank">{{ HTML::image('assets/img/laravel.png', 'laravel', array('title' => 'Laravel PHP framework')) }}</a> &middot; <a href="http://getbootstrap.com" target="_blank">{{ HTML::image('assets/img/bootstrap.png', 'bootstraps', array('title' => 'Bootstrap css framework')) }}</a> &middot; <a href="http://jquery.com/" target="_blank">{{ HTML::image('assets/img/jquery.png', 'jquery', array('title' => 'jQUery javascript framework')) }}</a>
     <div class="pull-right hidden-xs">
-        {{ date('Y') }}
+        &middot; {{ date('Y') }} &middot;
     </div>
     <div class="visible-xs">
         <hr />

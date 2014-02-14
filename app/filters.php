@@ -36,7 +36,7 @@ Route::filter('isEddy', function() {
 //Check the route must be call using AJAX
 Route::filter('ajax', function() {
     if (!Request::ajax()) {
-        return Redirect::route('admin.ssh.dashboard');
+        return App::abort(404);
     }
 });
 

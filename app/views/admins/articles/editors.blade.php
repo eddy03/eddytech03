@@ -21,20 +21,20 @@
         <button class="btn btn-danger btn-sm btn-block" id="batal" urls="{{ route('admin.article.index') }}"><i class="fa fa-times fa-fw"></i> Batal</button>
         @endif
         <hr />
-        <input type="text" name="subject" id="subject" class="form-control input-sm" placeholder="Tajuk Utama" value="{{ $articles->subject or '' }}" required />
+        <input type="text" name="subject" id="subject" class="form-control input-sm" placeholder="Tajuk Utama" value="{{ $article->subject or '' }}" required />
         @if( isset($condition) && $condition == 'Ubah' )
-        <input type="hidden" name="urls" id="urls" class="form-control input-sm" placeholder="URL tetap" value="{{ $articles->urls or '' }}" required />
+        <input type="hidden" name="urls" id="urls" class="form-control input-sm" placeholder="URL tetap" value="{{ $article->urls or '' }}" required />
         @else
-        <input type="text" name="urls" id="urls" class="form-control input-sm" placeholder="URL tetap" value="{{ $articles->urls or '' }}" required />
+        <input type="text" name="urls" id="urls" class="form-control input-sm" placeholder="URL tetap" value="{{ $article->urls or '' }}" required />
         @endif
-        <input type="hidden" name="article-id" value="{{ $articles->id or '' }}" />
+        <input type="hidden" name="article-id" value="{{ $article->id or '' }}" />
         <hr />
         @if( isset($condition) && $condition == 'Ubah' )
-        <input type="checkbox" id="publish" {{ ($articles->status == 1)? 'checked' : '' }} class="switch-small" data-on="success" data-off="warning" data-on-label="Ya" data-off-label="Tidak"> <strong>Paparkan</strong>
+        <input type="checkbox" id="publish" {{ ($article->status == 1)? 'checked' : '' }} class="switch-small" data-on="success" data-off="warning" data-on-label="Ya" data-off-label="Tidak"> <strong>Paparkan</strong>
         @else
         <input type="checkbox" id="publish" class="switch-small" data-on="success" data-off="warning" data-on-label="Ya" data-off-label="Tidak"> <strong>Paparkan</strong>
         @endif
         <hr />
-        <textarea class="form-control" name="snippet" rows="10" placeholder="Snippet bagi artikel ini" required>{{ $articles->snippet or '' }}</textarea>
+        <textarea class="form-control" name="snippet" rows="10" placeholder="Snippet bagi artikel ini" required>{{ $article->snippet or '' }}</textarea>
     </div>
 </div>
