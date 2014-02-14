@@ -19,6 +19,10 @@ Log perkembangan eddytech03.com
             <li>Jalan pintas untuk mengubah artikel (edit link)</li>
             <li>Perubahan pada database table articles</li>
         </ol>
+        <p class="lead">14/02/2014 <i class="fa fa-heart fa-fw"></i></p>
+        <ol>
+            <li>Footer siap dibina</li>
+        </ol>
     </div>
 </div>
 @endsection
