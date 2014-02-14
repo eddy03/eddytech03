@@ -1,5 +1,5 @@
 <meta name="description" content="eddytech03.com merupakan sebuah laman maya yang akan membantu anda didalam menghasilkan laman sesawang serta sistem web yang kemas, canggih, terkini serta menarik dengan menggunakan teknologi terkini."/>
-<meta name="keywords" content="Teknologi, Laman maya, software, internet, laravel, pengaturcaraan, programming, code, sumber terbuka, efisen, canggih, dunia maya, blog teknologi, bootstrap, css, php framework, nginx, php, eloquent, blade, hi tech, vagrant, komputer, jquery, MIT, github, version control, MVC, feed, Dota2, laravel php framework, bootstrap css framework, jquery javascript framework" />
+<meta name="keywords" content="Teknologi, Laman maya, software, internet, laravel, pengaturcaraan, programming, code, sumber terbuka, efisen, canggih, dunia maya, blog teknologi, bootstrap, css, php framework, nginx, php, eloquent, blade, hi tech, vagrant, komputer, jquery, MIT, github, version control, MVC, feed, Dota2, laravel php framework, bootstrap css framework, jquery javascript framework, Artisan" />
 <link rel="canonical" href="http://www.eddytech03.com/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="website"/>
