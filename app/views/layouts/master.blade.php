@@ -7,19 +7,31 @@
         @include('layouts.meta')
 	<title>@yield('title') | Edi Abdul Rahman</title>        
         
-        {{ HTML::style('components/bootswatch/yeti/bootstrap.min.css') }}
+        {{-- HTML::style('components/bootswatch/yeti/bootstrap.min.css') --}}
+        {{ HTML::style('components/bootstrap/dist/css/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('components/animate.css/animate.min.css') }}
-        {{ HTML::style('assets/css/style.css?id=103') }}        
+        {{ HTML::style('assets/css/style.css?id=103') }}
+        {{ HTML::style('assets/css/overwriteBootstrap.css?id=103') }}
         @yield('style')
     </head>
     
     <body>
-        @include('menu.master')
-        
-        <div class="page-wrap">
-            <div class="container">
-                @yield('content')
+               
+        <div class="page-wrap" ng-app="website">
+            @include('menu.master')
+            <div class="main-topic" ng-if="heading.need == true">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>@{{ heading.main }}</h1>
+                        <p>
+                            @{{ heading.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container main-content-block">
+                <ng-view></ng-view>
             </div>
         </div>
         
@@ -27,24 +39,6 @@
             @include('layouts.footer')
         </footer>
         
-        {{ HTML::script('components/jquery/dist/jquery.min.js') }}
-        {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
-        @yield('script')
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-44462725-1', 'eddytech03.com');
-            ga('send', 'pageview');
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('.navbar-brand').addClass('animated rollIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                    $('.navbar-brand').addClass('infine-color-shif');
-                });
-            });
-        </script>
+        @include('layouts.scripts')
     </body>
 </html>
