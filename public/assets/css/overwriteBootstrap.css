@@ -7,3 +7,9 @@
 .pager {
     margin: 0px;
 }
+pre code {
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    overflow-x: auto;
+}

@@ -1,14 +1,10 @@
-body {
-    /*padding-top: 70px;*/
-    /*background: #f4f4f4;*/
-}
+body {}
 html, body {
     height: 100%;
     width: 100%;
 }
 .page-wrap {
     min-height: 100%;
-    /* equal to footer height */
     margin-bottom: -60px;
 }
 .page-wrap:after {
@@ -16,7 +12,6 @@ html, body {
     display: block;
 }
 .site-footer, .page-wrap:after {
-    /* .push must be the same height as footer */
     height: 60px; 
 }
 .site-footer {
@@ -38,13 +33,13 @@ html, body {
     border-bottom: 1px solid #ccc;
 }
 .header h3 {
-  padding-bottom: 5px;
-  margin-top: 10px;
-  margin-bottom: 0;
-  line-height: 40px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 40px;
 }
 
-/* MAIN TOPIC STYLES */
+/* Main topic styles */
 .main-topic {
     padding: 50px 0px;    
     background: #2c3e50;
@@ -57,18 +52,19 @@ html, body {
     margin: 0px;
 }
 
-/* MAIN CONTENT BLOCK */
+/* Main content block */
 .main-content-block {
     margin-top: 20px;
 }
 
-/* ARTIKEL LISTING STYLE */
+/* Artikel listing */
 .list-artikel {
     border-bottom: 1px dotted #eee;
     margin-bottom: 20px;
 }
 .list-artikel:last-child {
     border-bottom: none;
+    margin-bottom: 40px;
 }
 .list-artikel i {
     color: #00aa00;
@@ -81,6 +77,38 @@ html, body {
     text-decoration: none;
 }
 
+/* Artikel styling */
+#disqus_thread {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+.calendars {
+    margin-bottom: 5px;
+}
+
+/* About me page image style */
+.about-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+}
+
+/* Custom table styling */
+/* Portfolio */
+.table-portfolio thead th {
+    text-align: center;
+}
+.table-portfolio th:nth-child(1) {
+    width: 40px;
+}
+.table-portfolio th:nth-child(2) {
+    width: 160px;
+}
+.table-portfolio th:nth-child(4) {
+    width: 90px;
+}
 
 
 
@@ -131,12 +159,6 @@ pre {
 .navbar-default .navbar-brand {
     color: #FFA500;
 }
-pre code {
-    word-break: normal !important;
-    word-wrap: normal !important;
-    white-space: pre !important;
-    overflow-x: auto;
-}
 .blueme {
     color: #00526e;
 }
@@ -154,27 +176,3 @@ pre code {
     -webkit-animation: myfirst 40s infinite;
 }
 
-/* About me page image style */
-.about-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-    height: 100px;
-}
-
-/*
-Table formating
-*/
-.table-portfolio thead th {
-    text-align: center;
-}
-.table-portfolio th:nth-child(1) {
-    width: 40px;
-}
-.table-portfolio th:nth-child(2) {
-    width: 160px;
-}
-.table-portfolio th:nth-child(4) {
-    width: 90px;
-}

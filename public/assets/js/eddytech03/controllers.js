@@ -67,10 +67,13 @@ apps.controller('tentang', ["$scope", "$rootScope", "$location", function($scope
     };
 }]);
 
-apps.controller('log', ["$scope", function($scope) {
+apps.controller('log', ["$scope", "$rootScope", function($scope, $rootScope) {
 
-    $scope.pagename = "Log";
-
+    $rootScope.heading = {
+        need: true,
+        main: "Log eddytech03",
+        description: "Log perkembangan penggunaan teknologi di eddytech03"
+    };
 }]);
 
 apps.controller('laravel', ["$scope", function($scope) {

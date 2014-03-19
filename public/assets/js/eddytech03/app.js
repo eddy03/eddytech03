@@ -24,7 +24,7 @@ apps.config(['$routeProvider', function($routeProvider) {
                     controller: "tentang"
                 })
                 .when("/log", {
-                    templateUrl: "public_html/home.html",
+                    templateUrl: "public_html/log.html",
                     controller: "log"
                 })
                 .when("/laravel", {
