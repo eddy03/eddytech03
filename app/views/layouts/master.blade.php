@@ -11,8 +11,8 @@
         {{ HTML::style('components/bootstrap/dist/css/bootstrap.min.css') }}
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('components/animate.css/animate.min.css') }}
-        {{ HTML::style('assets/css/style.css?id=103') }}
-        {{ HTML::style('assets/css/overwriteBootstrap.css?id=103') }}
+        {{ HTML::style('assets/css/style.css?id=104') }}
+        {{ HTML::style('assets/css/overwriteBootstrap.css?id=104') }}
         @yield('style')
     </head>
     
