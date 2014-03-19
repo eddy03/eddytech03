@@ -35,52 +35,17 @@ class HomeController extends BaseController {
      */
     public function showHomePage()
     {
-        $articles = $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(4, array('subject', 'urls', 'snippet', 'created_at'));
-        return View::make('contents.homepage')
-                ->withArticles($articles);
+        return View::make('layouts.master');
     }
     
     /**
-     * Show the articles view
+     * Grab the article from article pool
      * 
-     * @param string $artikel
-     * @return Responses
+     * @param string $urls
+     * @return string
      */
-    public function bacaArtikel($urls)
+    public function readArtikel($urls)
     {
-        $content = $this->article->readArticle($urls);        
-        if($content === false) {
-            return App::abort(404);
-        }
-        
-        $articles = $this->article->where('urls', $urls)->remember(30, 'article_query')->first(array('subject', 'urls', 'created_at'));
-        return View::make('contents.articles')
-                ->with('articles', $articles)
-                ->with('markdown', $content);
-    }
-    
-    /**
-     * Show the about me page view
-     * 
-     * @return Responses
-     */
-    public function showAboutMe()
-    {
-        return View::make('contents.about');
-    }
-    
-    /**
-     * Show the project list view
-     * 
-     * @return Responses
-     */
-    public function showProjectList()
-    {
-        return View::make('contents.project');
-    }
-    
-    public function showChangelog()
-    {
-        return View::make('contents.changelog');
-    }
+        return $this->article->readArticle($urls);
+    }    
 }

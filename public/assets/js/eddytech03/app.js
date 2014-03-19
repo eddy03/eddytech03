@@ -1,6 +1,8 @@
 var apps = angular.module("website", [
     'website.Controller',
-    'ngRoute'
+    'website.article',
+    'ngRoute',
+    'ngSanitize'
 ]);
 
 apps.config(['$routeProvider', function($routeProvider) {
@@ -8,6 +10,10 @@ apps.config(['$routeProvider', function($routeProvider) {
                 .when("/", {
                     templateUrl: "public_html/home.html",
                     controller: "homePage"
+                })
+                .when("/artikel/:artikel", {
+                    templateUrl: "public_html/artikel.html",
+                    controller: "artikel"
                 })
                 .when("/portfolio", {
                     templateUrl: "public_html/portfolio.html",
@@ -28,10 +34,6 @@ apps.config(['$routeProvider', function($routeProvider) {
                 .when("/bootstrap", {
                     templateUrl: "public_html/home.html",
                     controller: "bootstrap"
-                })
-                .when("/administrator", {
-                    templateUrl: "public_html/home.html",
-                    controller: "administrator"
                 })
                 .otherwise({redirectTo: '/'});
     }]);

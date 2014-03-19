@@ -1,7 +1,18 @@
 <div class="row">
     <div class="col-sm-9">
-        {{ pagename }}
-        
+        <div class="pagination-div">
+            <ul class="pager">
+                <li class="previous" ng-if="currentPage != lastPage"><a href="/#/?query={{ currentPage + 1 }}">&laquo; Lama</a></li>
+                <li class="next" ng-if="currentPage != 1"><a href="/#/?query={{ currentPage - 1 }}">Baru &raquo;</a></li>
+            </ul>
+        </div>
+        <div class="list-artikel" ng-repeat="article in articles">
+            <small class="text-right pull-right"></small>
+            <h2><a href="/#/artikel/{{ article.urls }}"><i class="fa fa-th-large fa-fw"></i> {{ article.subject }}</a></h2>            
+            <p>
+                {{ article.snippet }}
+            </p>
+        </div>
     </div>
     <div class="col-sm-3">
         <div class="input-group input-group-sm">

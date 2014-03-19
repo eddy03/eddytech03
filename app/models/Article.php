@@ -106,7 +106,7 @@ class Article extends Eloquent {
     /**
      * Save the article to file
      * 
-     * @return boolean
+     * @return boolean|array
      */
     private function saveFile()
     {

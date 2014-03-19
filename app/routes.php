@@ -13,32 +13,21 @@ Route::group(array(), function() {
         'as' => 'home',
         'uses' => 'HomeController@showHomePage'
     ));
-    //about me route
-    Route::get('tentang', array(
-        'as' => 'about',
-        'uses' => 'HomeController@showAboutMe'
+    
+    //Get and read the markdown content
+    Route::get('artikelContent/{urls}', array(
+        'as' => 'getArticle',
+        'uses' => 'HomeController@readArtikel'
     ));
-    //portfolio route
-    Route::get('projek', array(
-        'as' => 'project',
-        'uses' => 'HomeController@showProjectList'
-    ));
-    //read the articles
-    Route::get('artikel/{article}', array(
-        'as' => 'artikel',
-        'uses' => 'HomeController@bacaArtikel'
-    ));
-    //view the website changelog
-    Route::get('changelog', array(
-        'as' => 'changelog',
-        'uses' => 'HomeController@showChangelog'
-    ));
+    
+    //Resourcefull route to artikel resourcefull route
+    Route::resource('artikel', 'ArtikelControllers');
 });
 
 //Administrator route authentication routes
 Route::group(array('before' => 'check'), function() {
     //Administrator login route
-    Route::get('admin', array(
+    Route::get('auth', array(
         'as' => 'admin.login',
         'uses' => 'AdminController@login'
     ));

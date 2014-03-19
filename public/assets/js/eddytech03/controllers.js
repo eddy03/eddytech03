@@ -1,6 +1,6 @@
 var apps = angular.module('website.Controller', []);
 
-apps.controller('homePage', ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+apps.controller('homePage', ["$scope", "$rootScope", "$routeParams", "$location", "Articles", function($scope, $rootScope, $routeParams, $location, Articles) {
 
     $rootScope.headingborder = true;
     $rootScope.heading = {
@@ -9,6 +9,38 @@ apps.controller('homePage', ["$scope", "$rootScope", "$location", function($scop
     $rootScope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
+    
+    console.log($routeParams);
+    
+    Articles.listArticle($routeParams.query).then(function(data) {
+        $scope.totalArtikel = data.total;
+        $scope.lastPage = data.last_page;
+        $scope.currentPage = data.current_page;
+        $scope.perPage = data.per_page;
+        $scope.articles = data.data;
+        $scope.loops = new Array(data.last_page);
+    });
+    
+}]);
+
+apps.controller('artikel', ["$scope", "$rootScope", "$routeParams", "$location", "$sce", "Articles", function($scope, $rootScope, $routeParams, $location, $sce, Articles) {
+
+    Articles.getArticle($routeParams.artikel).then(function(data) {
+        if(typeof data !== 'undefined') {
+            $rootScope.heading = {
+                need: true,
+                main: data.subject,
+                description: data.snippet
+            };
+            
+            Articles.getArticleContent($routeParams.artikel).then(function(data) {
+                $scope.markdown = $sce.trustAsHtml(data);
+            });
+        }
+        else {
+            $location.path("/");
+        }
+    });
 }]);
 
 apps.controller('portfolio', ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {

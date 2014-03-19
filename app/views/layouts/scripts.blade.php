@@ -2,8 +2,10 @@
 {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
 {{ HTML::script('components/angular/angular.min.js') }}
 {{ HTML::script('components/angular-route/angular-route.min.js') }}
+{{ HTML::script('components/angular-sanitize/angular-sanitize.min.js') }}
 {{ HTML::script('assets/js/eddytech03/app.js') }}
 {{ HTML::script('assets/js/eddytech03/controllers.js') }}
+{{ HTML::script('assets/js/eddytech03/articles.js') }}
 
 @yield('script')
 <script>
