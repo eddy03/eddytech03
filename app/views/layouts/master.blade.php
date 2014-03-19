@@ -12,8 +12,8 @@
         {{ HTML::style('components/font-awesome/css/font-awesome.min.css') }}
         {{ HTML::style('assets/js/google-code-prettify/prettify.css') }}
         {{ HTML::style('components/animate.css/animate.min.css') }}
-        {{ HTML::style('assets/css/style.css?id=107') }}
-        {{ HTML::style('assets/css/overwriteBootstrap.css?id=107') }}
+        {{ HTML::style('assets/css/style.css?id=108') }}
+        {{ HTML::style('assets/css/overwriteBootstrap.css?id=108') }}
         @yield('style')
     </head>
     

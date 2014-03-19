@@ -5,6 +5,6 @@
             <li ng-class="{ active: isActive('/portfolio')}"><a href="/#/portfolio">Portfolio</a></li>
             <li ng-class="{ active: isActive('/tentang')}"><a href="/#/tentang">Mengenai eddytech03</a></li>
         </ul>
-        <h3 class="text-muted">eddytech03</h3>
+        <h3 class="text-muted"><a href="/">eddytech03</a></h3>
     </div>
 </div>

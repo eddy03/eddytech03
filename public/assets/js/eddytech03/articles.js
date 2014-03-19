@@ -5,8 +5,8 @@ apps.factory('Articles', ['$http', function($http) {
     return {
         listArticle: function(pagination) {
             pagination = (!pagination)? '' : '?page=' + pagination;
-            console.log(pagination);
             return $http.get('artikel' + pagination).then(function(response) {
+                console.log(response);
                 return response.data;
             });
         },

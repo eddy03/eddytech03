@@ -9,9 +9,7 @@ apps.controller('homePage', ["$scope", "$rootScope", "$routeParams", "$location"
     $rootScope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
-    
-    console.log($routeParams);
-    
+        
     Articles.listArticle($routeParams.query).then(function(data) {
         $scope.totalArtikel = data.total;
         $scope.lastPage = data.last_page;

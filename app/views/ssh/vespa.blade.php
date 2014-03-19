@@ -1,4 +1,4 @@
-@extends('ssh.dashboard')
+@extends('ssh.admin')
 
 @section('owner')
 vespa.eddytech03.com

@@ -4,9 +4,9 @@
 {{ HTML::script('components/angular-route/angular-route.min.js') }}
 {{ HTML::script('components/angular-sanitize/angular-sanitize.min.js') }}
 {{ HTML::script('assets/js/google-code-prettify/prettify.js') }}
-{{ HTML::script('assets/js/eddytech03/app.js') }}
-{{ HTML::script('assets/js/eddytech03/controllers.js') }}
-{{ HTML::script('assets/js/eddytech03/articles.js') }}
+{{ HTML::script('assets/js/eddytech03/app.js?id=1') }}
+{{ HTML::script('assets/js/eddytech03/controllers.js?id=1') }}
+{{ HTML::script('assets/js/eddytech03/articles.js?id=1') }}
 
 @yield('script')
 <script>

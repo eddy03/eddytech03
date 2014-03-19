@@ -14,7 +14,7 @@ class ArtikelControllers extends \BaseController {
      * @return Response
      */
     public function index() {
-        return $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(10, array('subject', 'urls', 'snippet', 'updated_at'))->toJson();
+        return $this->article->where('status', 1)->orderBy('created_at', 'DESC')->paginate(30, array('subject', 'urls', 'snippet', 'updated_at'))->toJson();
     }
 
     /**

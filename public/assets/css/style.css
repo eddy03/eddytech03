@@ -38,6 +38,12 @@ html, body {
     margin-bottom: 0;
     line-height: 40px;
 }
+.header .text-muted a {
+    color: #333;
+}
+.header .text-muted a:hover {
+    text-decoration: none;
+}
 
 /* Main topic styles */
 .main-topic {
@@ -59,8 +65,8 @@ html, body {
 
 /* Artikel listing */
 .list-artikel {
-    border-bottom: 1px dotted #eee;
-    margin-bottom: 20px;
+    border-bottom: 4px double #eee;
+    margin-bottom: 40px;
 }
 .list-artikel:last-child {
     border-bottom: none;
