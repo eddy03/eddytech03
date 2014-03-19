@@ -81,6 +81,7 @@ html, body {
 #disqus_thread {
     margin-top: 20px;
     padding-top: 10px;
+    margin-bottom: 100px;
 }
 .calendars {
     margin-bottom: 5px;
