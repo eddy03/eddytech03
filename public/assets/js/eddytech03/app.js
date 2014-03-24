@@ -35,5 +35,9 @@ apps.config(['$routeProvider', function($routeProvider) {
                     templateUrl: "public_html/home.html",
                     controller: "bootstrap"
                 })
+                .when("/gist", {
+                    templateUrl: "public_html/gist.html",
+                    controller: "gist"
+                })
                 .otherwise({redirectTo: '/'});
     }]);

@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form role="form" id="forms">
+                <div class="form-group">
+                    <button class="btn btn-block btn-success" ng-click="generate()"><i class="fa fa-code fa-fw"></i> Generate</button>
+                </div>
+                <div id="content">
+                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                        <li class="active"><a href="#tab_core" data-toggle="tab">Core</a></li>
+                        <li><a href="#tab_polygon" data-toggle="tab">Polygon</a></li>
+                        <li><a href="#tab_path" data-toggle="tab">Path</a></li>
+                    </ul>
+                    <div id="my-tab-content" class="tab-content">
+                        <div class="tab-pane active" id="tab_core">
+                            <div class="form-group">
+                                <label for="Clat">Center to</label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-sm" id="Clat" ng-model="Clat" placeholder="Latitude" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-sm" id="Clng" ng-model="Clng" placeholder="Longitude" />
+                                    </div>
+                                </div>                         
+                            </div>
+                            <div class="form-group">
+                                <label for="fillColor">Zoom level</label>
+                                <input type="text" class="form-control input-sm" id="zoom" ng-model="zoom" placeholder="zoom level : 1 - 18" />                       
+                            </div>
+                            <div class="form-group">
+                                <label for="fillColor">Subject</label>
+                                <input type="text" class="form-control input-sm" id="subject" ng-model="subject" placeholder="Subject of the polygon" />                        
+                            </div>                            
+                        </div>
+                        <div class="tab-pane" id="tab_polygon">
+                            <div class="form-group">
+                                <label for="strokeColor">Stroke Color</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control input-sm" id="strokeColor" ng-model="strokeColor" placeholder="000000" />
+                                </div>                          
+                            </div>
+                            <div class="form-group">
+                                <label for="fillColor">Fill Color</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control input-sm" id="fillColor" ng-model="fillColor" placeholder="000000" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="strokeOpacity">Stroke Opacity</label>
+                                <input type="text" class="form-control input-sm" id="strokeOpacity" ng-model="strokeOpacity" placeholder="0.9" />
+                            </div>
+                            <div class="form-group">
+                                <label for="strokeWeight">Stroke Weight</label>
+                                <input type="text" class="form-control input-sm" id="strokeWeight" ng-model="strokeWeight" placeholder="1" />                       
+                            </div>
+                            <div class="form-group">
+                                <label for="fillOpacity">Fill Opacity</label>
+                                <input type="text" class="form-control input-sm" id="fillOpacity" ng-model="fillOpacity" placeholder="0.25" />                       
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_path">
+                            <div class="form-group">
+                                <button class="btn btn-block btn-sm btn-success" type="button" id="addPointing">Add Pointing</button>
+                            </div>
+                            <div class="form-group" id="latlng">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-sm latitude" name="lat[]" placeholder="Latitude" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-sm longitude" name="lng[]" placeholder="Longitude" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="latlngDIV"></div>
+                        </div>
+                    </div>
+                </div>                
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <div id="gist" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
+</div>
