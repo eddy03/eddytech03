@@ -17,7 +17,8 @@
     Dibangunkan menggunakan 
     <a href="http://laravel.com" target="_blank">{{ HTML::image('assets/img/laravel.png', 'laravel', array('title' => 'Laravel PHP framework')) }}</a> &middot; 
     <a href="http://getbootstrap.com" target="_blank">{{ HTML::image('assets/img/bootstrap.png', 'bootstraps', array('title' => 'Bootstrap css framework')) }}</a> &middot; 
-    <a href="http://jquery.com/" target="_blank">{{ HTML::image('assets/img/jquery.png', 'jquery', array('title' => 'jQUery javascript framework')) }}</a>    
+    <a href="http://jquery.com/" target="_blank">{{ HTML::image('assets/img/jquery.png', 'jquery', array('title' => 'jQUery javascript framework')) }}</a> &middot; 
+    <a href="http://angularjs.org/" target="_blank">{{ HTML::image('assets/img/angularjs.png', 'angularJS', array('title' => 'AngularJS MVC javascript framework')) }}</a>    
     <div class="visible-xs">
         <hr />
     </div>
