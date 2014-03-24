@@ -29,6 +29,7 @@
         "angular-route": "~1.2.14",
         "angular-ui-router": "~0.2.10",
         "angular": "~1.2.14",
-        "angular-sanitize": "~1.2.14"
+        "angular-sanitize": "~1.2.14",
+        "gmap3": "~5.1.1"
     }
 }
