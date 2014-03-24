@@ -1,9 +1,11 @@
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
 {{ HTML::script('components/jquery/dist/jquery.min.js') }}
 {{ HTML::script('components/bootstrap/dist/js/bootstrap.min.js') }}
 {{ HTML::script('components/angular/angular.min.js') }}
 {{ HTML::script('components/angular-route/angular-route.min.js') }}
 {{ HTML::script('components/angular-sanitize/angular-sanitize.min.js') }}
 {{ HTML::script('assets/js/google-code-prettify/prettify.js') }}
+{{ HTML::script('components/gmap3/gmap3.js') }}
 {{ HTML::script('assets/js/eddytech03/app.js?id=1') }}
 {{ HTML::script('assets/js/eddytech03/controllers.js?id=1') }}
 {{ HTML::script('assets/js/eddytech03/articles.js?id=1') }}

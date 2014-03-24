@@ -19,11 +19,7 @@ Route::group(array(), function() {
         'as' => 'getArticle',
         'uses' => 'HomeController@readArtikel'
     ));
-    
-    Route::get('gist', function() {
-        return View::make('gist');
-    });
-    
+        
     //Resourcefull route to artikel resourcefull route
     Route::resource('artikel', 'ArtikelControllers');
 });
